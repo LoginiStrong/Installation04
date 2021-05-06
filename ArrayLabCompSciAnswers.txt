@@ -1,0 +1,6 @@
+1. A good reason to use th arraylist rather than a traditional array when adding or removing things 
+is because with a regular array you have to recreate the entire array, while the arraylist does it for you.
+2. clone(), isEmpty(), and iterator()
+3.A do while loop is more practical for a couple reasons, on is that the menu is located inside the loop and
+has to be shown to the user before an input. The other is that the user needs to perform the input at least once
+(hence the do part of the while loop).
