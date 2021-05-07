@@ -113,11 +113,13 @@ int moves = 0;
                      }
                      catch (ArrayIndexOutOfBoundsException aioobe)
                      {
-                        blueY += 25;
-                        gc.setFill(Color.CYAN);
-                        gc.fillRect(blueX, blueY, 25, 25);
-                        System.out.println("You Win!!!");
-                        System.exit(0);
+                        for (int k = 0; k < 21; k++)
+                        {
+                           if (mazeArray[20][k] == 3)
+                           {
+                              System.out.println("You Win!!!");
+                           }
+                        }
                      }     
                   }         
                }
