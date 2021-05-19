@@ -14,17 +14,29 @@ import javafx.scene.layout.FlowPane;
 
 public class MazeCreator extends Canvas
 {
+
+//These are the graphical objects used to construct thewindow and its contents
 GraphicsContext gc = getGraphicsContext2D();
+FlowPane root = new FlowPane();
+
+//array that will hold the contents of the mazeData file
 int [][] mazeArray = new int [21][21];
+
+//variables that hold the beginning drawing position of the black and white squares
 int xPos = 0;
 int yPos = 0;
-int count = 0;
+
+//variables that hold the blue square start drawing position
 int blueX = 0;
 int blueY = 0;
-FlowPane root = new FlowPane();
+
+//counts the first 0 in the mazeData file and assigns a blue square to be drawn instead of a white square
+int count = 0;
+
+//varibale that makes sure the blue square only moves through one white square at a time
 int moves = 0;
    
-//constructor for the canvas (what the maze will be drawn on)
+//constructor for the canvas (what the maze will be drawn on) that passes in a FlowPane named root to draw on
       public MazeCreator(FlowPane root)
       {
          this.root = root;
