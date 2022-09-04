@@ -19,24 +19,53 @@ import java.util.regex.*;
             HttpResponse<String> response = client.send(request,
                     HttpResponse.BodyHandlers.ofString());
 
-            /*HttpRequest newRequest = HttpRequest.newBuilder().uri(URI.create("https://www.surlatable.com/shrimp-boil/REC-390893.html?cgid=recipes")) //starting URL…
-                    .GET() // GET is default
-                    .build();
 
-            HttpResponse<String> newResponse = client.send(newRequest,
-                    HttpResponse.BodyHandlers.ofString());*/
+
+
            String body = response.body();
            int begin = 0;
 
-           for (int i = 0; i < 24; i++)
+           for (int i = 0; i < 1; i++)
            {
-               int start = body.indexOf("\"thumb-link\" href=", begin);
-               int end = body.indexOf("title", start);
+               int start = body.indexOf("\"thumb-link\" href=\"", begin);
+               int end = body.indexOf("\" title", start);
                System.out.println(start);
                System.out.println(end);
-               start = start + 18;
+               start = start + 19;
                String link = body.substring(start, end);
-               System.out.println(link);
+
+               HttpRequest newRequest = HttpRequest.newBuilder()
+                       .uri(URI.create(link)) //starting URL…
+                       .GET() // GET is default
+                       .build();
+               HttpResponse<String> newResponse = client.send(newRequest,
+                       HttpResponse.BodyHandlers.ofString());
+               String tempBody = newResponse.body();
+
+               String path = "Home/";
+
+               /*int tempStart = tempBody.lastIndexOf("\"breadcrumb-element\" href=\"https://www.surlatable.com/recipes");
+
+               int tempEnd = tempBody.indexOf("\" title", tempStart);
+               tempStart = tempStart + 54;
+               String restOfPath = tempBody.substring(tempStart, tempEnd);
+               System.out.println(tempStart);
+               System.out.println(tempEnd);
+               path += restOfPath;
+               System.out.println(path);
+
+               tempStart = tempBody.indexOf("breadcrumb-element\">");
+               tempEnd = tempBody.indexOf("</span", tempStart);
+               tempStart += 20;
+               restOfPath = tempBody.substring(tempStart, tempEnd);
+               path += restOfPath;*/
+               //path = path.toUpperCase();
+               System.out.println(path);
+
+               //System.out.println(tempBody);
+
+
+               //System.out.println(link);
                begin = end;
            }
 
