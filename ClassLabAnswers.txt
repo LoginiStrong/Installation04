@@ -1,0 +1,9 @@
+1. The problem with making the temperature variable public would mean
+that its contents could be modified between the main and the class,
+therefore the varibale could be messed with and illegitimize an output
+
+2. I created a method within the class that checked if the degree was
+in bounds, and then called that method when needed rather than rewriting the code
+
+3. The first object changed because it was set to be equal to the second object,
+meaning that when second object is called to change, the first will do the same.

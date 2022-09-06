@@ -1,0 +1,23 @@
+4.9
+The big three are the Destructor, Copy Constructor, and the operator=.The default destructor applies it to every data
+member, the default copy coonstructor applying itself to each data member in turn, the default operator= by applying
+itself to each data member in turn. Defaults are unnacceptable when dealing with a data member that is a pointer and the pointee is heap-allocated 
+by some object member function.
+
+4.10
+Copying can be disabled by placing the copy cconstructor or operator= declarations in the private section of the class.
+
+4.13
+C++ seperates the class specification from its implementation. 
+
+4.14
+The idiom is a declaration we use so that a class declaration can not be repeated in a single .cpp file.
+
+4.15
+Static members are declared inside a class declaration beside the member vairiable or function. THey work almost 
+identically as they do in java.
+
+4.18
+An incomplete class declaration is when you instantiate the class name and put nothing inside of it.
+This is done because when we use two classes inside of one another there defintions are seperated and it will generate
+an error, so we temporarily incompletely define them.

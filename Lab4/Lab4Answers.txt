@@ -1,0 +1,18 @@
+4.1 public classes are listed like this->
+public:
+//public items, mainly functions
+private like this->
+private:
+//private data members
+
+4.2 Class declaration is done in a .h file and only includes the member names and types as well as function names, types, and parameters.
+The definition/implementation for them are in a .cpp file which has the function defintions in each of
+the previous functions.
+
+4.3 It is not legal to name a method the same name as the class if it is not the constructor.
+
+4.5 Accessor have constant within the parameter and the mutators don't
+
+4.6 An implicit type conversion is when the data type of a variable is changed without the programmers declaration
+
+4.7 Explicit makes it to where a variable can't be implicitly converted

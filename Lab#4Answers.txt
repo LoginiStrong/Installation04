@@ -1,0 +1,13 @@
+1. The reason this program uses abstract classes is because 
+each type of bird has to have certain methods that cross over
+all instances of object type birds. 
+2. Sometimes we still don't want to use protected because
+protected variables are shared among all classes, just not
+the main. So the unauthorized modification of variables
+could happen.
+3. What inheretance does is allow a parent class to extend its 
+methods to a child class. The child class can then use all the 
+parent classes methods.
+4. If we don't override all the abstract methods java will
+throw an error, because the inheriting class must define the 
+abstract methods. 

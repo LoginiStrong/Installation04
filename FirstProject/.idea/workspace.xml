@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="9248f0fc-7d0c-4168-bd93-a39d3d056226" name="Changes" comment="" />
+=======
+    <list default="true" id="ae216e6e-0798-42bf-b72d-0584a7b5f4c9" name="Changes" comment="" />
+>>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,7 +20,11 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+<<<<<<< Updated upstream
   <component name="ProjectId" id="2EIHXy3LsnWKeTly5dvOfsfAdrd" />
+=======
+  <component name="ProjectId" id="2EDsiZwJZWl0ZTN5BJ5KWtUUN2q" />
+>>>>>>> Stashed changes
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -31,11 +39,19 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+<<<<<<< Updated upstream
       <changelist id="9248f0fc-7d0c-4168-bd93-a39d3d056226" name="Changes" comment="" />
       <created>1662276225143</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1662276225143</updated>
+=======
+      <changelist id="ae216e6e-0798-42bf-b72d-0584a7b5f4c9" name="Changes" comment="" />
+      <created>1662141645717</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1662141645717</updated>
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>

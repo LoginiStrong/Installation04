@@ -1,0 +1,7 @@
+1. A BorderPane allows us to set our images to a certain position on the stage.
+Meaning we can allocate the center to FlowPanes, the sides to VBox's, and the top and bottom for HBoxs.
+But in reality any sort of Pane or Box could be used, the BorderPane just allows us to organize it.
+
+2. The compiler throws us this error: 
+PaneExperiment.java:121: error: incompatible types: Object cannot be converted to Node 
+I assume this happens because what we created is type object and not type node.

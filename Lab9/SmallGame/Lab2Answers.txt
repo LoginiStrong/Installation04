@@ -1,0 +1,15 @@
+2.2 pow(x, n);
+
+2.3 The declaration is in an h file and only contains the functions name and its arguments.
+The definition is in a .cpp file and has everything the h file has as well as what the programmer 
+has defined the function to do.
+
+2.4 A default parameter is a value that is in a function parameter that doesn't have an assigned value, 
+so the compiler will assign a default value.
+
+2.6 C++ compiles the code independently through a two stage approach of compilation and then links it 
+to the rest of the solution.
+
+2.9 The different parameter-passing mechanisms are call by value and call by reference.
+Call by reference doesn't use an & and will only change the reference of data passed in, while
+call by value uses an & and will change the value of the data passed in.

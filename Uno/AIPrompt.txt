@@ -1,0 +1,28 @@
+You will be creating an AI for the game Uno. Your AI will be competing against other classmates.
+Your grade is principally off how it performs against an AI Dr. Mood has created and minorly how well it does against other classmates. 
+You may ask me to play your AI against my AI every 4 days, but expect it may take up to 3 business days for me to get to it (I can give you the play by play output if desired). 
+Specific uno rules for this game: at the end of each round, each player’s points are added to their own count. 
+Your goal is to get the lowest score of all the players. You can assume there will always be 5 players.  No stacking bad cards. Can always play a wild. 
+Can only play a draw4 if you do not have the color on top of the deck.
+
+You will download the AI project and inherit from the AI class.
+TestAI.h/cpp is an example AI that randomly picks a valid card to play 
+Note: the only file I will use from you is the code from the new AI you turn in – in fact, any other changes you make will be ignored. 
+I would suggest looking at the TestAI code, as to how you can use some of the functions. 
+The function getPlayableCardsInHand returns a vector of the cards you can play this turn. 
+Your ai will then return a number indicating the card index (from the cardsInHand) that you want to play. -1 draws. An invalid play draws.
+
+Your goal is not to understand all the code in the project, only the AI create and how to read the program output. 
+	Be sure to give your AI a unique name in your getName() function.
+In the main.cpp file, you can make the output more verbose or less verbose by having verbose as 0 or 1 (starts as 1 [true]) [line 10]. 
+The verbose output shows output from every card play. You can also have it run more than 1 game by modifying the for loop [line 399]. 
+I will be testing your AIs on 1,000+ games.
+In Player.h, you can add your AI in the case statement & modify where the players are created in main.cpp [line 391] to get your AI playing, 
+There is a bug bounty of 1 point for the first person to find an error in the code.
+	
+Suggestions:
+•	Try your AI at more than just 1 spot. Be sure to try them as player 0 and 4 as these spots can often error.
+•	Your goal is to minimize points; if your AI does not consider points of the cards you will not do well.
+•	The game forces you to draw if you attempt to make an illegal move. Be sure to not make illegal moves.
+•	The worst strategy is to draw every round. I suggest you don’t do that one.
+•	The current (sample) AI, plays randomly. If you turn in something worse than randomness, your grade will not go well.

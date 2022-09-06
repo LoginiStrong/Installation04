@@ -1,0 +1,10 @@
+1. The application doesn's crash if it has a runtime exception. What it does is if it runs into an error that isn't caught 
+it will execute all the code up to that error, and then it'll just revert to its starting point.
+2. Modifying anything in a or b description during runtime does nothing to the application. Adding a butting
+or changing the size of the stage will only work if the program is recompiled and ran agian.
+3. One difference would be that an interface is interacted with through an application window, while abstract
+classes are just used interacted with in the system. Another thing is that while they share the inheretence
+factr (extends) this is because javafx has to interact with the Application rather than an abstarct class that
+the programmer defines themselves.
+4. Interfaces are used in this lab to allow the user to get real time graphical input from
+their actions on their keyboard or mouse using event handlers.

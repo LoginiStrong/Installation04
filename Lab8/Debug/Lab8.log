@@ -1,0 +1,9 @@
+﻿  Main.cpp
+D:\Installation04\Lab8\Main.cpp(37,20): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Lab8\Main.cpp(39,25): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Lab8\Main.cpp(49,20): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Lab8\Main.cpp(151,24): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Lab8\Main.cpp(168,24): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Lab8\Main.cpp(220,25): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Lab8\Main.cpp(235,25): warning C4018: '<': signed/unsigned mismatch
+  Lab8.vcxproj -> D:\Installation04\Lab8\Debug\Lab8.exe

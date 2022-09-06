@@ -1,0 +1,10 @@
+1. We can't use the == operator on objects
+because that operator is comparing the addresses of each
+object, rather than the entities the objects hold
+2. To make .equals work when comparing an object the programmer has
+to overide the original .equals method with their own. This new method
+works by checking the instance of each object and comparing the entities 
+within the objects.
+3. Static methods can only reference static variables.
+4. A static variable is defined in one class and then carried over all the instances of related classes. 
+A non static variable has to be reinstantiated every time it's referenced in a different class.

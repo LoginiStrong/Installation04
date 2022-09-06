@@ -1,0 +1,33 @@
+4.1:
+a.) A
+b.) G, H, I, L, M, K
+
+4.2
+Node A: a: None, b: B and C, c: None, d: 0, e: 4
+Node B: a: A, b: D and E, c: C, d: 1, e: 3
+Node C: a: A, b: F, c: B, d: 1, e: 3
+Node D: a: B, b: G and H, c: E, d: 2, e: 2
+Node E: a: B, b: I and J, c: D, d: 2, e: 2
+Node F: a: C, b: K, c: None, d: 2, e: 2
+Node G: a: D, b: None, c: H, d: 3, e: 1
+Node H: a: D, b: None, c: G, d: 3, e: 1
+Node I: a: E, b: None, c: J, d: 3, e: 1
+Node J: a: E, b: L and M, c: I, d: 3, e: 1
+Node K: a: F, b: None, c: None, d: 3, e: 1
+Node L: a: J, b: None, c: M, d: 4, e: 0
+Node M: a: J, b: None, c: L, d: 4, e: 0
+
+4.3
+depth = 4
+
+4.8
+prefix: -**ab+cde
+infix: (a*b)*(c*d)-e
+postfix: ab*cd+*e-
+
+4.9
+		a.)				3							b.)						2
+				1				4									1				4
+					2				6													6
+								  5	   9											      5	   9
+									 7													 7

@@ -1,0 +1,8 @@
+﻿  Duck.cpp
+  Main.cpp
+  Pond.cpp
+D:\Installation04\Lab4\Pond.cpp(9,20): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Lab4\Pond.cpp(35,20): warning C4018: '<': signed/unsigned mismatch
+  TemperatureGauge.cpp
+  Generating Code...
+  Lab4.vcxproj -> D:\Installation04\Lab4\Debug\Lab4.exe

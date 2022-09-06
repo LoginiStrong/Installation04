@@ -1,0 +1,19 @@
+5.2
+Under no circumstances can any of these be changed.
+
+5.3
+When overloading operator= as a member function we can access the private data in that member,
+if we overload it as a nonmember function we will not be able to access the members data unless
+it is a friend of the class.
+
+6.3
+Slicing is when we copy a derived class object into a base class object, but only 
+the base class portion is actually copied.
+
+6.5
+To invoke the superclass constructor you have to use the 
+subclass's constructor initialization list.
+
+6.8
+A class is abstract if it contains an abstract method. An abstract method is declared
+with virtual and is followed by = 0.

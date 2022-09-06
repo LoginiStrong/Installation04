@@ -1,0 +1,31 @@
+3.2: 
+A pointer variable stores the memory address of any other entity.
+
+3.3:
+A stale pointer is a pointer whose value no longer refers to a valid object.
+
+3.4:
+A memory leak is when  an object tha tis allocated by new is no lonnger referenced and we don't call the delete operator on the object.
+Because then the memory that is consumed is lost until the termination of the program.
+
+3.6:
+The delete operator deallocates the memory of the object it is called on. This operator must be applied through a pointer.
+
+3.12:
+The -> operator accesses members of a pointed-at class type. It is also used as shorthand for finding (*strPtr).length(),
+what can be used instead is strPtr->length().
+
+3.15:
+a. Yes it is legal, we just have a pointer pointing at another pointers address that is pointing at the adresss of a. 
+b. The values would be whatever a is holding, which is 0 at the moment.
+c. No, because *ptrptr is not a double pointer, the correct syntax would be **ptrptr.
+
+3.18:
+a. address of a (&a)
+b. 5
+c. false
+d. true
+e. address of the pointer
+f. Throws an error
+g. 5
+h. 5

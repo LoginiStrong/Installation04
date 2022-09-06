@@ -1,0 +1,5 @@
+1. We catch with exception for the simple reason that it
+is easier than locating individual exceptions that are derived from the 
+original exception line.
+2. A NoSuchElementException is thrown, suggesting that when the file
+continued it was told to pull something from the file that wasn't there.

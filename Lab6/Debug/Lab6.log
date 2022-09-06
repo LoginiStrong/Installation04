@@ -1,0 +1,6 @@
+﻿  Main.cpp
+D:\Installation04\Lab6\Main.cpp(43,21): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Lab6\Main.cpp(64,20): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Lab6\Main.cpp(81,21): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Lab6\Main.cpp(96,20): warning C4018: '<': signed/unsigned mismatch
+  Lab6.vcxproj -> D:\Installation04\Lab6\Debug\Lab6.exe

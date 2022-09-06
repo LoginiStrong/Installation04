@@ -1,0 +1,9 @@
+public String getDuck()     
+{
+String toReturn = "";      
+toReturn += "Height = "+height+"\n";      
+toReturn += "Position = "+position_x+"\n";      
+toReturn += "Speed = "+swimmingSpeed;      
+return toReturn;   
+}
+

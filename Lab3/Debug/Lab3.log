@@ -1,0 +1,8 @@
+﻿  Lab3.cpp
+D:\Installation04\Lab3\Lab3.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\Installation04\Lab3\Lab3.cpp(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\Installation04\Lab3\Lab3.cpp(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\Installation04\Lab3\Lab3.cpp(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  add.cpp
+  Generating Code...
+  Lab3.vcxproj -> D:\Installation04\Lab3\Debug\Lab3.exe

@@ -1,0 +1,16 @@
+What is linear probing?: Linear probing is a technique in programming that we use when dealing with hash tables. Specifically,
+it is when we arrive at a collision in the table so we move down the table untill we have found an empty space where we can put our element.
+
+How does a splay tree work? That is, explain what splaying is and when it is called?: A splay tree works by having the basic foundation of
+a BST, but it has quick access to prevoius elements in the tree. When an element is looked up in the tree it is moved to the root without
+disobeying BST. It does this through three rotations. Simple rotation, Zig-Zig or Zag-Zag, and Zig-Zag. It also balances the train this way.
+
+What is the average complexity of m operations on a splay tree?: O(log(n))
+
+What is the guarantee of an AVL tree?: The difference between the depth of right and left sub-trees cannot be more than one.
+
+What does the AVL tree after inserting the following nodes look like?: 3,6,4,7,8,5
+						
+											6
+									4				7
+								3		5				8

@@ -1,0 +1,7 @@
+﻿  hashTable.cpp
+D:\Installation04\Lab10\hashTable.cpp(16,20): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Lab10\hashTable.cpp(32,20): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Lab10\hashTable.cpp(68,20): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Lab10\hashTable.cpp(93,20): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Lab10\hashTable.cpp(118,21): warning C4018: '<': signed/unsigned mismatch
+  Lab10.vcxproj -> D:\Installation04\Lab10\Debug\Lab10.exe

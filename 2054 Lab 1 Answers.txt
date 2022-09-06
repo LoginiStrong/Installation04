@@ -1,0 +1,15 @@
+	Many C++ programs return an integer to the main function because void main() doesn't exist in C++. 
+It instead returns an integer with an assigned value with its assigned execution.
+
+1.3
+	The result would be that the if statement is automatically executed because 
+the value for x is replaced with whatever value y is. The else statement could never be executed.
+
+1.4
+	No matter what numbers the variables hold in any order the program is going to read out sorted.
+
+1.5
+	If the variable is unintitialized the program takes whatever value for the variable that previously resided at that location in memory.
+
+1.6
+T	Typedef allows the programmer to create new names for types such as int or templated types.

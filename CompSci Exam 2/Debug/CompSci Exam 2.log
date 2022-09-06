@@ -1,0 +1,5 @@
+﻿  Main.cpp
+D:\Installation04\CompSci Exam 2\Main.cpp(66,22): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\CompSci Exam 2\Main.cpp(76,22): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\CompSci Exam 2\Main.cpp(93,20): warning C4018: '<': signed/unsigned mismatch
+  CompSci Exam 2.vcxproj -> D:\Installation04\CompSci Exam 2\Debug\CompSci Exam 2.exe

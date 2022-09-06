@@ -18,13 +18,6 @@ public class FirstProject {
         HttpResponse<String> response = client.send(request,
                 HttpResponse.BodyHandlers.ofString());
 
-        HttpRequest newRequest = HttpRequest.newBuilder().uri(URI.create("https://www.surlatable.com/shrimp-boil/REC-390893.html?cgid=recipes")) //starting URL…
-                .GET() // GET is default
-                .build();
-
-        HttpResponse<String> newResponse = client.send(newRequest,
-                HttpResponse.BodyHandlers.ofString());
-
 
 
 
@@ -61,27 +54,7 @@ public class FirstProject {
                 navigate = tempEnd;
             }
             System.out.println(path);
-            //System.out.println(path);
-               /*int tempStart = tempBody.lastIndexOf("\"breadcrumb-element\" href=\"https://www.surlatable.com/recipes");
-               int tempEnd = tempBody.indexOf("\" title", tempStart);
-               tempStart = tempStart + 54;
-               String restOfPath = tempBody.substring(tempStart, tempEnd);
-               System.out.println(tempStart);
-               System.out.println(tempEnd);
-               path += restOfPath;
-               System.out.println(path);
-               tempStart = tempBody.indexOf("breadcrumb-element\">");
-               tempEnd = tempBody.indexOf("</span", tempStart);
-               tempStart += 20;
-               restOfPath = tempBody.substring(tempStart, tempEnd);
-               path += restOfPath;*/
-            //path = path.toUpperCase();
-            //System.out.println(path);
 
-            //System.out.println(tempBody);
-
-
-            //System.out.println(link);
             begin = end;
         }
 
@@ -89,7 +62,7 @@ public class FirstProject {
 //output to a file, so it's easy to mess with (you won’t be for your finished program)
         FileOutputStream fs = new FileOutputStream("output.csv");
         PrintWriter pw = new PrintWriter(fs);
-        pw.println(newResponse.body()); //response.body() is the html source code in a string format. It outputs to a file so you can see it easier right now, but you will ultimately want to just manipulate the strings a lot
+        pw.println(response.body()); //response.body() is the html source code in a string format. It outputs to a file so you can see it easier right now, but you will ultimately want to just manipulate the strings a lot
         pw.close();
     }
 }

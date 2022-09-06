@@ -1,0 +1,23 @@
+﻿  Narclump.cpp
+D:\Installation04\Uno\Narclump.cpp(25,20): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Uno\Narclump.cpp(71,20): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Uno\Narclump.cpp(112,20): warning C4018: '<': signed/unsigned mismatch
+  main.cpp
+D:\Installation04\Uno\main.cpp(15,20): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Uno\main.cpp(58,20): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Uno\main.cpp(89,20): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Uno\main.cpp(93,21): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Uno\main.cpp(109,20): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Uno\main.cpp(151,20): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Uno\main.cpp(178,20): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Uno\main.cpp(236,20): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Uno\main.cpp(251,20): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Uno\main.cpp(339,20): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Uno\main.cpp(341,21): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Uno\main.cpp(347,20): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Uno\main.cpp(350,21): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Uno\main.cpp(371,20): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Uno\main.cpp(380,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+D:\Installation04\Uno\main.cpp(408,20): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  Uno.vcxproj -> D:\Installation04\Uno\Debug\Uno.exe

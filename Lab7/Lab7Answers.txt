@@ -1,0 +1,36 @@
+9.5 
+The stream will not be closed intil it goes out of scope, which
+could cause some problems if other files are being messed with before it
+goes out of scope.
+
+9.6 
+setw(n), setfill(ch), setprecision(n), and skipws()
+
+10.2 
+An iterator is an interface that can be used to traverse any collection.
+In C++ it is more flexible since we can overload operators for the iterators.
+
+10.7 
+A reverse iterator can iterate through a collection backwards. We use const_reverse_iterator and
+++ moves toward the front and -- moves toward the back.
+
+11.3
+example: int* array = new int[10];
+
+11.6
+int a[3]'s contents will be allocated on the stack and int *a contents will be on the heap
+
+11.10  
+Example:
+//input code
+int* ptr = new int(5);
+	int number = 20;
+	cout << ptr << endl;
+	cout << number << endl;
+	cout << ptr + number;
+//output
+012A5A40
+20
+012A5A90
+
+Answer: The result is the ptr's address being slightly modified (in this case from 40 to 90 at the end);

@@ -1,0 +1,66 @@
+First, create a Node class. Then Node class should have an unsigned int value, and a node * left, and a 
+Node * right. Create the necessary accessors and mutators and any other functions you think are 
+necessary.
+Second, create a tree class. It should have a root data member. Tree should have the following 
+functions:
+1. Insert (insert a value into the tree). It should use the BST property.
+a. Implement the insert function discussed in class.
+i. This (and other functions) will public and private versions.
+2. Find (find a value, returns the value at the node if found, return -1 if not found)
+a. Implement the find function discussed in class.
+b. Find should print out each value it checks.
+3. Print
+a. Create an in-order traversal function and print out each node’s value.
+b. Each node’s value should be indented according to its depth. Print out depth*2  ‘-‘s  
+before the number.
+Example print of a tree: (if yours is reversed [so the left side is on top], you need to swap 
+traversing the left and right side).
+----14
+--12
+------11
+----10
+------9
+8
+----6
+--4
+----2
+------1
+4. Horizontal print
+a. Unfortunately, the previous print function only printed 1 node value per line. This 
+part fixes that!
+b. Create another in-order traversal. 
+i. In this one, you will probably have to pass an array of strings of length the 
+height of the tree.
+c. When visiting the node, you will have to add the node’s value a string in the array 
+(where the index of which array to modify = the depth of where the node is) and 
+two blank spaces to all other lines. When printing the node’s value, ensure two 
+characters are always printed, i.e., “15” or “ 3”.
+Print horizontal trees
+         8
+     4          12
+   2   6    10    14
+ 1         9  11
+Tree with Nodes added in the following order: 8, 4, 12, 2, 6, 10, 14, 1, 9, 11
+Calling find on nodes (4, 5,6, 10, 9) [I printed out the value, which was returned as well]
+8 4 4
+8 4 6 -1
+8 4 6 6
+8 12 10 10
+8 12 10 9 9
+Call print on this tree
+----14
+--12
+------11
+----10
+------9
+8
+----6
+--4
+----2
+------1
+Print horizontal trees
+         8
+     4          12
+   2   6    10    14
+1 9  11
+Expect the tester of your program to modify the tree and test out a tree of their choice.

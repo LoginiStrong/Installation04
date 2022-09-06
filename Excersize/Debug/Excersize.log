@@ -1,0 +1,4 @@
+﻿  Excersize.cpp
+D:\Installation04\Excersize\Excersize.cpp(9,20): warning C4018: '<': signed/unsigned mismatch
+D:\Installation04\Excersize\Excersize.cpp(48,22): warning C4018: '<': signed/unsigned mismatch
+  Excersize.vcxproj -> D:\Installation04\Excersize\Debug\Excersize.exe

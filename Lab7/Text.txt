@@ -1,0 +1,52 @@
+You will be creating a program to read well formatted level data from files and put it into a class. You 
+will then write another part of the program to output the level data to a different output file in the same 
+format. You will be using three level data files from canvas (“level1.txt”, “level2.txt”, “level3.txt”.)
+These data files are shortened, but still real level data files from a game I wrote.
+Hints: Do not use getLine for this lab (it will make your life much more difficult); Use the >> operator 
+instead. Use pointers with the Map data structure. 
+Part I (10 points): 
+a. Create a new project
+b. Open the following files from canvas for lab6: Level1.txt, Level2.txt, and Level3.txt. Do not 
+download and copy to the project; instead “add new items” and copy everything in the files to new files 
+in your project. (.txt can be created by selecting .txt under “utility” in the file chooser.)
+c. Put each of the filenames in a vector of string and then open each file and print out the first 
+piece of text (the level name)
+output from run:
+map1
+map2
+map3
+Part II (70 points): 
+Create a class to store a level. Each file is a single level. Look at the level format to determine 
+what data members you need. Hint: Your class should at least have a 3d array for the map data 
+(integers). Do not use a vector.
+Create two non-member functions, readLevel and writeLevel. readLevel will take a string 
+[filename] and return a Level *. readLevel will read the Level data from a file and stick it in a Level *. The 
+format of the Level files is discussed below. 
+writeLevel will take a string [filename] and a Level *, which you will output to a new file using 
+the same format. 
+Create a map of strings / Level * and then use readLevel to read each level, storing each level in 
+the map after you read them. Once you have read each of them in, write each of them to a file by using 
+writeLevel (use iterators to loop over each entry in the map).  You should output each Level#.txt file to a 
+file Level#.txt_OUT by concatenating _OUT onto the filename.
+Level format: <> indicates a variable. Actually open the files and look at them so you understand 
+the format. Ask questions if you don’t understand the format. 
+<NAME>
+<ZSIZE>
+<XSIZE>
+<YSIZE>
+[assuming zsize = 2, xsize = 5, and ysize = 5, the level data is as follows:]
+<X1Y5Z1><X2Y5Z1><X3Y5Z1><X4Y5Z1><X5Y5Z1>
+<X1Y4Z1><X2Y4Z1><X3Y4Z1><X4Y4Z1><X5Y4Z1>
+<X1Y3Z1><X2Y3Z1><X3Y3Z1><X4Y3Z1><X5Y3Z1>
+<X1Y2Z1><X2Y2Z1><X3Y2Z1><X4Y2Z1><X5Y2Z1>
+<X1Y1Z1><X2Y1Z1><X3Y1Z1><X4Y1Z1><X5Y1Z1>
+<X1Y5Z2><X2Y5Z2><X3Y5Z2><X4Y5Z2><X5Y5Z2>
+<X1Y4Z2><X2Y4Z2><X3Y4Z2><X4Y4Z2><X5Y4Z2>
+<X1Y3Z2><X2Y3Z2><X3Y3Z2><X4Y3Z2><X5Y3Z2>
+<X1Y2Z2><X2Y2Z2><X3Y2Z2><X4Y2Z2><X5Y2Z2>
+<X1Y1Z2><X2Y1Z2><X3Y1Z2><X4Y1Z2><X5Y1Z2>
+<ZSTARTLOCATION>
+<XSTARTLOCATION>
+<YSTARTLOCATION>
+Verify (by comparing the files) the level#.txt files match your level#.txt_OUT files. Also, you will be 
+required to read the _OUT file using readLevel to demonstrate your program can correctly read your 

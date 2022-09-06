@@ -1,0 +1,263 @@
+You will be creating a war program (the card game).  War, for today, works as following:
+Each player has a deck of 13*2 cards (numbers 0 – 12, 2 copies of each card).
+Each player draws a single card each round. The player with the “higher” card wins and puts 
+both of the player’s cards on the bottom of their [the winner’s] deck. Once a player no longer has cards 
+then they lose. If there is a tie on a round, both players place two “extra” cards “down” (as long as they 
+have at least 1 card left after they play these down, otherwise they don’t until play down extra cards) 
+and then reveal their next [the third] card. The winner is the player with the highest revealed card and 
+wins all cards currently placed down and adds to bottom of the deck. If there is still a tie, repeat the 
+process of playing three more cards per person (two face down, 1 face up). Don’t play the cards face 
+down if that will be the player’s last card. Continue this process until there is no longer a tie. If a player 
+runs out of cards, then they lose that round. 
+Details:
+Create a Card class, which contains the value. Create two decks; one for each player. Each deck 
+should be a queue, use the STL queue class.  The game will ask for a random seed to randomize the 
+cards in the beginning. Then call simpleSetRand (<SEED>) [see codebelow] to set the random number 
+generator seed. Once the cards are randomized (shuffle), play the game with the rules above. Print out 
+who wins (and each card “comparison”; see below). Your play might be slightly different than mine if 
+you are running on a Mac or using a different compiler on Windows.
+
+Simple random number generator code:
+short int currentNumber;
+void simpleSetRand(int passedInNum)
+{
+currentNumber = passedInNum;
+}
+int simpleRand()
+{
+return currentNumber = ((currentNumber + 1) * (currentNumber + 1))% 17;
+}
+
+Shuffle function (takes in a queue):
+Put the queue into a vector. For each card I in the vector compared to every card j in the vector, 
+swap the two cards if( simpleRand () % 2 == 0). Put the vector back into the queue. 
+Example run:
+What seed would you like?: 2
+7 vs 5
+2 vs 4
+5 vs 1
+3 vs 3
+WAR!!!
+facedown player1: 1
+facedown player1: 0
+facedown player2: 12
+facedown player2: 2
+--11 vs 11--
+facedown player1: 9
+facedown player1: 12
+facedown player2: 0
+facedown player2: 8
+--7 vs 10--
+10 vs 6
+8 vs 9
+5 vs 5
+WAR!!!
+facedown player1: 3
+facedown player1: 6
+facedown player2: 7
+facedown player2: 2
+--1 vs 4--
+4 vs 0
+2 vs 3
+12 vs 12
+WAR!!!
+facedown player1: 10
+facedown player1: 0
+facedown player2: 1
+facedown player2: 9
+--8 vs 11--
+11 vs 7
+9 vs 10
+6 vs 6
+WAR!!!
+facedown player1: 4
+facedown player1: 7
+facedown player2: 8
+facedown player2: 2
+--5 vs 4--
+5 vs 10
+1 vs 7
+10 vs 8
+6 vs 0
+4 vs 12
+0 vs 9
+11 vs 11
+WAR!!!
+facedown player1: 7
+facedown player1: 4
+facedown player2: 11
+facedown player2: 2
+--5 vs 12--
+2 vs 0
+8 vs 1
+7 vs 3
+4 vs 3
+6 vs 8
+6 vs 9
+10 vs 4
+8 vs 1
+6 vs 2
+0 vs 7
+2 vs 6
+0 vs 3
+8 vs 5
+1 vs 5
+7 vs 2
+3 vs 3
+WAR!!!
+facedown player1: 4
+facedown player1: 3
+facedown player2: 11
+facedown player2: 8
+--10 vs 9--
+4 vs 1
+8 vs 0
+1 vs 10
+6 vs 12
+2 vs 12
+8 vs 9
+5 vs 10
+7 vs 5
+2 vs 10
+9 vs 1
+10 vs 7
+8 vs 4
+11 vs 12
+3 vs 0
+4 vs 9
+3 vs 12
+3 vs 5
+4 vs 2
+1 vs 11
+8 vs 4
+0 vs 7
+7 vs 11
+5 vs 11
+9 vs 6
+1 vs 8
+10 vs 6
+7 vs 9
+8 vs 0
+4 vs 7
+3 vs 2
+0 vs 6
+4 vs 0
+2 vs 3
+8 vs 1
+4 vs 5
+9 vs 1
+6 vs 10
+10 vs 6
+6 vs 12
+8 vs 2
+0 vs 12
+3 vs 8
+2 vs 9
+4 vs 5
+0 vs 10
+8 vs 2
+1 vs 10
+9 vs 11
+1 vs 12
+10 vs 4
+6 vs 9
+8 vs 3
+2 vs 12
+8 vs 3
+2 vs 5
+10 vs 1
+4 vs 11
+8 vs 0
+3 vs 7
+8 vs 7
+3 vs 11
+10 vs 5
+1 vs 11
+8 vs 1
+0 vs 8
+8 vs 7
+7 vs 9
+10 vs 4
+5 vs 7
+8 vs 0
+1 vs 6
+8 vs 2
+7 vs 3
+10 vs 4
+4 vs 5
+8 vs 6
+0 vs 10
+8 vs 6
+2 vs 12
+7 vs 0
+3 vs 12
+10 vs 3
+4 vs 8
+8 vs 2
+6 vs 9
+8 vs 4
+6 vs 5
+7 vs 0
+0 vs 10
+10 vs 1
+3 vs 10
+8 vs 9
+2 vs 11
+8 vs 1
+4 vs 12
+6 vs 6
+WAR!!!
+facedown player1: 5
+facedown player1: 7
+facedown player2: 9
+facedown player2: 2
+--0 vs 12--
+10 vs 2
+1 vs 5
+8 vs 4
+1 vs 11
+10 vs 3
+2 vs 7
+8 vs 3
+4 vs 11
+10 vs 1
+3 vs 11
+8 vs 0
+3 vs 8
+10 vs 7
+1 vs 9
+8 vs 5
+0 vs 7
+10 vs 1
+7 vs 6
+8 vs 4
+5 vs 5
+WAR!!!
+facedown player1: 10
+facedown player1: 1
+facedown player2: 0
+facedown player2: 10
+--7 vs 2--
+6 vs 12
+8 vs 3
+4 vs 12
+2 vs 4
+7 vs 8
+10 vs 6
+0 vs 9
+1 vs 0
+10 vs 10
+WAR!!!
+facedown player1: 5
+facedown player1: 5
+facedown player2: 3
+facedown player2: 10
+--8 vs 8--
+facedown player1: 3
+facedown player1: 10
+facedown player2: 9
+facedown player2: 2
+--6 vs 11--
+1 vs 4
+0 vs 12
+Player 2 wins!
