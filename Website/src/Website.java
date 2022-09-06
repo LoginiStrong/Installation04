@@ -63,6 +63,7 @@ public class Website {
                     title = (tempBody.substring(tempStart + 1, tempEnd));
                     title = title.replace(",","");
                     title = title.replace("\n","");
+                    path = path.replace("\n","");
                     title += ",";
                 }
 
@@ -78,6 +79,7 @@ public class Website {
             tempStart = tempBody.indexOf("By", navigate);
             tempEnd = tempBody.indexOf("\n", tempStart);
             String author = tempBody.substring(tempStart, tempEnd);
+            author = author.replace(",", "");
             author += ",";
             System.out.println(author);
             newArray[i][0] = author;
@@ -95,6 +97,7 @@ public class Website {
                 tempEnd = tempBody.indexOf("\n", tempStart);
                 servings = tempBody.substring(tempStart, tempEnd);
                 servings = servings.replace(",","");
+                servings = servings.replace("\n","");
                 servings += ",";
             }
             System.out.println(servings);
@@ -126,7 +129,12 @@ public class Website {
             ingredients = ingredients.replace("&#8541;","⅝");
             ingredients = ingredients.replace("&#8529;","⅑");
             ingredients = ingredients.replace("&#8530;","⅒");
-            ingredients = ingredients.replace("&#8542;","⅞");
+            ingredients = ingredients.replace("<span style=\"font-size:12pt\">","");
+            ingredients = ingredients.replace("<strong><span style=\"font-size:12pt\">","");
+            ingredients = ingredients.replace("</span>","");
+            ingredients = ingredients.replace("</strong>","");
+            ingredients = ingredients.replace("<br />","");
+            ingredients = ingredients.replace("<div>","");
             ingredients = ingredients.replace("\n"," ");
 
             ingredients += ",";
@@ -146,6 +154,12 @@ public class Website {
             instructions = instructions.replace("\n", "");
             instructions = instructions.replace("&#8212;", "-");
             instructions = instructions.replace(",","");
+            instructions = instructions.replace("<span style=\"font-size:12pt\">","");
+            instructions = instructions.replace("<strong><span style=\"font-size:12pt\">","");
+            instructions = instructions.replace("</span>","");
+            instructions = instructions.replace("</strong>","");
+            instructions = instructions.replace("<br />","");
+            instructions = instructions.replace("<div>","");
 
 
 
