@@ -92,6 +92,7 @@ public class Website {
                         title = (tempBody.substring(tempStart + 1, tempEnd));
                         title = title.replace(",", "");
                         title = title.replace("\n", "");
+                        title = title.replace("&amp;", "&");
 
                     }
 
@@ -101,6 +102,7 @@ public class Website {
                 path = path.replace("\n", "");
                 path = path.replace("\r", "");
                 path = path.replace("\r\n", "");
+                path = path.replace("&amp;", "&");
                 path += ",";
                 newArray[i][1] = path;
                 System.out.println(path);
@@ -111,6 +113,7 @@ public class Website {
                 tempEnd = tempBody.indexOf("\n", tempStart);
                 String author = tempBody.substring(tempStart, tempEnd);
                 author = author.replace(",", "");
+                author = author.replace("$amp;", "&");
                 author += ",";
                 System.out.println(author);
                 newArray[i][0] = author;
@@ -148,25 +151,24 @@ public class Website {
                 ingredients = ingredients.replace("</i>", "");
                 ingredients = ingredients.replace("<li>", "");
                 ingredients = ingredients.replace("</li>", "");
-                ingredients = ingredients.replace("&#189;", "½");
-                ingredients = ingredients.replace("&#8531;", "⅓");
-                ingredients = ingredients.replace("&#8532;", "⅔");
-                ingredients = ingredients.replace("&#188;", "¼");
-                ingredients = ingredients.replace("&#190;", "¾");
-                ingredients = ingredients.replace("&#8533;", "⅕");
-                ingredients = ingredients.replace("&#8534;", "⅖");
-                ingredients = ingredients.replace("&#8535;", "⅗");
-                ingredients = ingredients.replace("&#8536;", "⅘");
-                ingredients = ingredients.replace("&#8537;", "⅙");
-                ingredients = ingredients.replace("&#8538;", "⅚");
-                ingredients = ingredients.replace("&#8528;", "⅐");
-                ingredients = ingredients.replace("&#8533;", "⅕");
-                ingredients = ingredients.replace("&#8539;", "⅛");
-                ingredients = ingredients.replace("&#8540;", "⅜");
-                ingredients = ingredients.replace("&#8541;", "⅝");
-                ingredients = ingredients.replace("&#8529;", "⅑");
-                ingredients = ingredients.replace("&#8530;", "⅒");
-                ingredients = ingredients.replace("&#176;", "°");
+                ingredients = ingredients.replace("&#189;", " 1/2");
+                ingredients = ingredients.replace("&#8531;", " 1/3");
+                ingredients = ingredients.replace("&#8532;", " 2/3");
+                ingredients = ingredients.replace("&#188;", " 1/4");
+                ingredients = ingredients.replace("&#190;", " 3/4");
+                ingredients = ingredients.replace("&#8533;", " 1/5");
+                ingredients = ingredients.replace("&#8534;", " 2/5");
+                ingredients = ingredients.replace("&#8535;", " 3/5");
+                ingredients = ingredients.replace("&#8536;", " 4/5");
+                ingredients = ingredients.replace("&#8537;", " 1/6");
+                ingredients = ingredients.replace("&#8538;", " 5/6");
+                ingredients = ingredients.replace("&#8528;", " 1/7");
+                ingredients = ingredients.replace("&#8539;", " 1/8");
+                ingredients = ingredients.replace("&#8540;", " 3/8");
+                ingredients = ingredients.replace("&#8541;", " 5/8");
+                ingredients = ingredients.replace("&#8529;", " 1/9");
+                ingredients = ingredients.replace("&#8530;", " 1/10");
+                ingredients = ingredients.replace("&#176;", " Degrees ");
                 ingredients = ingredients.replace("&nbsp;", "tsp.");
                 ingredients = ingredients.replace("&#8211;", "-");
                 ingredients = ingredients.replace("<span style=\"font-size:12pt\">", "");
@@ -206,28 +208,27 @@ public class Website {
                 instructions = instructions.replace("<div>", "");
                 instructions = instructions.replace("&#8217;", "'");
                 instructions = instructions.replace("&#34;", "\"");
-                instructions = instructions.replace("&#176;", "°");
+                instructions = instructions.replace("&#176;", " Degrees ");
 
 
-                instructions = instructions.replace("&#189;", "½");
-                instructions = instructions.replace("&#8531;", "⅓");
-                instructions = instructions.replace("&#8532;", "⅔");
-                instructions = instructions.replace("&#188;", "¼");
-                instructions = instructions.replace("&#190;", "¾");
-                instructions = instructions.replace("&#8533;", "⅕");
-                instructions = instructions.replace("&#8534;", "⅖");
-                instructions = instructions.replace("&#8535;", "⅗");
-                instructions = instructions.replace("&#8536;", "⅘");
-                instructions = instructions.replace("&#8537;", "⅙");
-                instructions = instructions.replace("&#8538;", "⅚");
-                instructions = instructions.replace("&#8528;", "⅐");
-                instructions = instructions.replace("&#8533;", "⅕");
-                instructions = instructions.replace("&#8539;", "⅛");
-                instructions = instructions.replace("&#8540;", "⅜");
-                instructions = instructions.replace("&#8541;", "⅝");
-                instructions = instructions.replace("&#8529;", "⅑");
-                instructions = instructions.replace("&#8530;", "⅒");
-                instructions = instructions.replace("&#8542;", "⅞");
+                instructions = instructions.replace("&#189;", " 1/2");
+                instructions = instructions.replace("&#8531;", " 1/3");
+                instructions = instructions.replace("&#8532;", " 2/3");
+                instructions = instructions.replace("&#188;", " 1/4");
+                instructions = instructions.replace("&#190;", " 3/4");
+                instructions = instructions.replace("&#8533;", " 1/5");
+                instructions = instructions.replace("&#8534;", " 2/5");
+                instructions = instructions.replace("&#8535;", " 3/5");
+                instructions = instructions.replace("&#8536;", " 4/5");
+                instructions = instructions.replace("&#8537;", " 1/6");
+                instructions = instructions.replace("&#8538;", " 5/6");
+                instructions = instructions.replace("&#8528;", " 1/7");
+                instructions = instructions.replace("&#8539;", " 1/8");
+                instructions = instructions.replace("&#8540;", " 3/8");
+                instructions = instructions.replace("&#8541;", " 5/8");
+                instructions = instructions.replace("&#8529;", " 1/9");
+                instructions = instructions.replace("&#8530;", " 1/10");
+                instructions = instructions.replace("&#8542;", " 7/8");
 
                 instructions += "\n";
                 newArray[i][5] = instructions;
