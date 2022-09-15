@@ -24,7 +24,26 @@ public class Menu extends Application
 {
 
 StackPane root = new StackPane();
-
+boolean gamePaused = false;
+//MenuMaker make = new MenuMaker(root);
+            Button resume = new Button("Resume");
+      
+            Button save = new Button("Save");
+            //start.setFont(font);
+            
+            Button load = new Button("Load");
+            //end.setFont(font);
+            
+            Button restartA = new Button("Restart Area");
+            
+            Button restartL = new Button("Restart Level");
+            
+            Button end = new Button("Exit");
+           
+            
+            VBox vbox = new VBox (0, resume, save, load, restartA, restartL, end);
+            //vbox.setTranslateX(20);
+            //vbox.setTranslateY(20);
 
 
 
@@ -38,10 +57,11 @@ public void start (Stage stage)
    
    //}
       
-      
-      
+      resume.setOnAction(new ButtonListener());
+      end.setOnAction(new ButtonListener());
       root.setOnKeyPressed(new KeyListenerDown());
-      //initialize the scene with the root flowpane
+      
+      
       Scene scene = new Scene(root, 525, 525);
       stage.setScene(scene);
       stage.setTitle("BorderPane");
@@ -56,14 +76,62 @@ public void start (Stage stage)
    
     public class KeyListenerDown implements EventHandler<KeyEvent>  
    {
+   
       public void handle(KeyEvent event) 
       {
-         if (event.getCode() == KeyCode.ESCAPE)
+      
+         if (event.getCode() == KeyCode.ESCAPE && gamePaused == false)
          {
-            MenuMaker make = new MenuMaker(root);
+            gamePaused = true;
+            root.getChildren().add(vbox);
+            //root.getChildren().remove(vbox);
+         }
+         else if (event.getCode() == KeyCode.ESCAPE && gamePaused == true)
+         {
+            gamePaused = false;
+            root.getChildren().remove(vbox);
          }
          
       }
    }
+   
+   
+   public class ButtonListener implements EventHandler<ActionEvent>
+   {
+      public void handle(ActionEvent e)
+      {  
+         if (e.getSource() == end)
+         {
+            System.exit(0);
+         }
+         else if (e.getSource() == resume)
+         {
+            gamePaused = false;
+            root.getChildren().remove(vbox);
+            root.requestFocus();
+         }
+         else if (e.getSource() == save)
+         {
+            
+         }
+         else if (e.getSource() == load)
+         {
+            
+         }
+         else if (e.getSource() == restartA)
+         {
+            
+         }
+         else if (e.getSource() == restartL)
+         {
+            
+         }
+      }
+   }
+
+   
+   
+   
+   
 
 }
