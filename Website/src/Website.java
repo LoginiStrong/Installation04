@@ -9,13 +9,15 @@ public class Website {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
+        //This is the array of strings that hold each piece of information per page
         String[][] newArray = new String[96][6];
 
+        //These variables make sure we progress through the array after each new page
         int startLoop = 0;
         int reach = 24;
 
+        //This for loop is for progressing through each page to get 96 recipes. In each if statement we build a body for each page
         for (int h = 0; h < 4; h++) {
-
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("https://www.surlatable.com/recipes/?srule=best-matches&start=0&sz=24")) //starting URL…
@@ -50,13 +52,12 @@ public class Website {
             HttpResponse<String> response = client.send(request,
                     HttpResponse.BodyHandlers.ofString());
 
-
+            //this is the string of the first webpage we are manipulating
             String body = response.body();
-            int begin = 0;
 
+            int begin = 0;//so that we can start at the end of the previous link we found
 
-
-
+            //This loop is iterating through each link on the webpage (recipe)
             for (int i = startLoop; i < reach; i++) {
                 int start = body.indexOf("\"thumb-link\" href=\"", begin);
                 int end = body.indexOf("\" title", start);
@@ -71,8 +72,9 @@ public class Website {
                         .build();
                 HttpResponse<String> newResponse = client.send(newRequest,
                         HttpResponse.BodyHandlers.ofString());
-                String tempBody = newResponse.body();
+                String tempBody = newResponse.body(); //creating a string out of the body of our sub web page
 
+                //temporary starting and ending indexes of desired information we are searching for
                 int tempStart = 0;
                 int tempEnd;
 
@@ -83,13 +85,15 @@ public class Website {
                     int navigate = tempBody.indexOf("breadcrumb-element", tempStart);
                     tempStart = tempBody.indexOf(">", navigate);
                     tempEnd = tempBody.indexOf("<", tempStart);
-                    path += tempBody.substring(tempStart + 1, tempEnd);
+                    path += tempBody.substring(tempStart + 1, tempEnd);//finds each path relative to the narrowing indexes
                     path += "/";
                     if (j == 3 || j == 4) {
+
+                        //a lot of this is replacing character that will interfere with the csv file
                         path = path.replace("\n", "");
                         path = path.replace("\r\n", "");
                         path = path.replace("\r", "");
-                        title = (tempBody.substring(tempStart + 1, tempEnd));
+                        title = (tempBody.substring(tempStart + 1, tempEnd));//finds the title relative to the narrowing indexes
                         title = title.replace(",", "");
                         title = title.replace("\n", "");
                         title = title.replace("&amp;", "&");
@@ -97,15 +101,15 @@ public class Website {
                     }
 
                 }
-                title += ",";
+                title += ",";//commas are added to separate the rows in the csv file
                 newArray[i][2] = title;
+                //a lot of this is replacing character that will interfere with the csv file
                 path = path.replace("\n", "");
                 path = path.replace("\r", "");
                 path = path.replace("\r\n", "");
                 path = path.replace("&amp;", "&");
                 path += ",";
                 newArray[i][1] = path;
-                System.out.println(path);
 
                 //This code gets the author
                 int navigate = tempBody.indexOf("recipe-author");
@@ -115,16 +119,14 @@ public class Website {
                 author = author.replace(",", "");
                 author = author.replace("$amp;", "&");
                 author += ",";
-                System.out.println(author);
                 newArray[i][0] = author;
-                System.out.println(title);
-
 
                 String servings = "";
                 tempStart = tempBody.indexOf("Makes", navigate);
                 if (tempStart == -1) {
                     servings = "Not specified,";
                 } else {
+                    //a lot of this is replacing character that will interfere with the csv file
                     tempEnd = tempBody.indexOf("\n", tempStart);
                     servings = tempBody.substring(tempStart, tempEnd);
                     servings = servings.replace(",", "");
@@ -133,15 +135,14 @@ public class Website {
                     servings = servings.replace("\r", "");
                     servings += ",";
                 }
-                System.out.println(servings);
                 newArray[i][3] = servings;
-
 
                 navigate = tempBody.indexOf("recipe-details-ingredients");
                 tempStart = tempBody.indexOf("<li>", navigate);
                 tempEnd = tempBody.indexOf("</ul", navigate);
                 String ingredients = tempBody.substring(tempStart, tempEnd);
 
+                //a lot of this is replacing character that will interfere with the csv file
                 ingredients = ingredients.replace(",", "");
                 ingredients = ingredients.replace("<b>", "");
                 ingredients = ingredients.replace("<br>", "");
@@ -182,14 +183,14 @@ public class Website {
                 ingredients = ingredients.replace("\r", " ");
 
                 ingredients += ",";
-                System.out.println(ingredients);
                 newArray[i][4] = ingredients;
-
 
                 navigate = tempBody.indexOf("recipe-details-procedure\">");
                 tempStart = navigate + 26;
                 tempEnd = tempBody.indexOf("</div>", tempStart);
                 String instructions = tempBody.substring(tempStart, tempEnd);
+
+                //a lot of this is replacing character that will interfere with the csv file
                 instructions = instructions.replace("<i>", "");
                 instructions = instructions.replace("</i>", "");
                 instructions = instructions.replace("<b>", "");
@@ -209,8 +210,6 @@ public class Website {
                 instructions = instructions.replace("&#8217;", "'");
                 instructions = instructions.replace("&#34;", "\"");
                 instructions = instructions.replace("&#176;", " Degrees ");
-
-
                 instructions = instructions.replace("&#189;", " 1/2");
                 instructions = instructions.replace("&#8531;", " 1/3");
                 instructions = instructions.replace("&#8532;", " 2/3");
@@ -232,11 +231,7 @@ public class Website {
 
                 instructions += "\n";
                 newArray[i][5] = instructions;
-                System.out.println(instructions);
-
-
-                Thread.sleep(10000);
-
+                Thread.sleep(10000);//sleep the program si we dont DOS ourselves from the site
 
                 begin = end;
             }
@@ -247,6 +242,7 @@ public class Website {
 //output to a file, so it's easy to mess with (you won’t be for your finished program)
         FileOutputStream fs = new FileOutputStream("output.csv");
         PrintWriter pw = new PrintWriter(fs);
+        //iterating through the arrays contents and putting it into a csv file
         for (int i = 0; i < 96; i++)
         {
             for (int j = 0; j < 6; j++)
