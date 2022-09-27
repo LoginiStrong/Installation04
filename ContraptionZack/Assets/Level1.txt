@@ -1,0 +1,21 @@
+PlayerPosition
+2 5
+Layout
+2
+6 5
+T1 T1 XT1 T1 T1
+T1 T1 T1 T1 T1
+T1 T1 T1 T1 T1
+T1 T1 T1 T1 T1
+T1 T1 T1 T1 T1
+T1 T1 T1 T1 T1
+
+Objects
+7
+fw0 4 
+fw1 4
+fw2 4
+fw3 4
+fw4 4
+fw5 4
+jb4 3.5 
