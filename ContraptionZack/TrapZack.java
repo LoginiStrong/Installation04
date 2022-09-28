@@ -51,6 +51,7 @@ public class TrapZack extends Application{
   
 
   //assets for pause menu
+  int numberOfSaves = 0;
   TextInputDialog td = new TextInputDialog();
   boolean gamePaused = false;
   boolean titleMenu = true;
@@ -67,14 +68,7 @@ public class TrapZack extends Application{
   
   VBox vbox = new VBox (0, resume, save, load, restartA, restartL, end);
   
-  //assets for load menu
-  Button save1 = new Button();
-  Button save2 = new Button();
-  Button save3 = new Button();
-  Button save4 = new Button();
-  Button save5 = new Button();
   
-  VBox saveBox = new VBox(0, save1, save2, save3, save4, save5);
   
   //title menu
   Button newGame = new Button("New Game");
@@ -82,6 +76,15 @@ public class TrapZack extends Application{
   Font comic = new Font("Comic Sans MS", 50);
   Label title = new Label("Contraption Zack");
   VBox titleBox = new VBox(200, title, newGame, loadGame);
+  
+  //assets for load menu
+  Button save1 = new Button("");
+  Button save2 = new Button("");
+  Button save3 = new Button("");
+  Button save4 = new Button("");
+  Button save5 = new Button("");
+  
+  VBox saveBox = new VBox(0, save1, save2, save3, save4, save5);
   
   //game
   Image Water = new Image("Assets/Water.png", false);
@@ -93,7 +96,14 @@ public class TrapZack extends Application{
    public void start(Stage stage){
    
       //escape menu
+      
+      save1.setOnAction(new ButtonListener());
+      save2.setOnAction(new ButtonListener());
+      save3.setOnAction(new ButtonListener());
+      save4.setOnAction(new ButtonListener());
+      save5.setOnAction(new ButtonListener());
       //saveBox.setAlignment(Pos.TOP_CENTER);
+      //save1.setMinWidth(100);
       
       resume.setMinWidth(100);
       save.setMinWidth(100);
@@ -119,7 +129,7 @@ public class TrapZack extends Application{
       title.setFont(comic);
       newGame.setFont(comic);
       loadGame.setFont(comic);
-      vbox.setAlignment(Pos.CENTER); 
+      //vbox.setAlignment(Pos.CENTER); 
       newGame.setOnAction(new ButtonListener());
       titleBox.setAlignment(Pos.CENTER);
       root.getChildren().add(titleBox);
@@ -135,7 +145,8 @@ public class TrapZack extends Application{
       
       //request focus for canvas
       canvas.requestFocus();
-      titleBox.requestFocus();
+      //titleBox.requestFocus();
+      newGame.requestFocus();
    }
    
    //main
@@ -341,20 +352,44 @@ public class TrapZack extends Application{
          }
          else if (e.getSource() == save)
          {
-            L1.setPx(Px/64);
-            L1.setPy(Py/64);
+            L1.setPx((Px/64)-1);
+            L1.setPy((Py/64)-1);
             td.showAndWait();
             String name = td.getEditor().getText();
             L1.saveLevel("SaveGames/" + name + ".txt");
+            
+            
+            switch (numberOfSaves)
+            {
+               case 0:
+                  save1.setText(name);
+                  numberOfSaves++;
+                  break;
+               case 1:
+                  save2.setText(name);
+                  numberOfSaves++;
+                  break;
+               case 2:
+                  save3.setText(name);
+                  numberOfSaves++;
+                  break;
+               case 3:
+                  save4.setText(name);
+                  numberOfSaves++;
+                  break;
+               case 4:
+                  save5.setText(name);
+                  numberOfSaves++;
+                  break;
+            
+            }
+            
             gamePaused = false;
             root.getChildren().remove(vbox);
             root.requestFocus();
+            
          }
-         else if (e.getSource() == load)
-         {
-            //resume.setText("Changed");
-            root.getChildren().add(saveBox);
-         }
+        
          else if (e.getSource() == restartA)
          {
             drewPlayer = false;
@@ -372,7 +407,7 @@ public class TrapZack extends Application{
          {
             titleMenu = false;
             root.getChildren().remove(titleBox);
-            vbox.setAlignment(Pos.TOP_LEFT);
+            //vbox.setAlignment(Pos.TOP_LEFT);
             
             //ContraptionZacLevel L1 = new ContraptionZacLevel("Assets/Level1.txt");
             
@@ -387,6 +422,27 @@ public class TrapZack extends Application{
          {
             //add code to load the saved file
          }
+         
+         if (e.getSource() == load)
+         {
+            //resume.setText("Changed");
+            root.getChildren().remove(vbox);
+            root.getChildren().add(saveBox);
+            save1.requestFocus();
+            System.out.println(save1.getText());
+            System.out.println(save1.getText().equals(""));      
+         }
+         if (e.getSource() == save1 && !save1.getText().equals(""))
+         {
+                  System.out.println(save1.getText());
+                  L1 = new ContraptionZacLevel("SaveGames/"+save1.getText()+".txt");
+                  root.getChildren().remove(saveBox);
+                  drewPlayer = false;
+                  gamePaused = false;
+                  root.requestFocus();
+         }
+         
+         
       }
    }
    
