@@ -71,6 +71,7 @@ public class TrapZack extends Application{
   
   
   //title menu
+  TextInputDialog ld = new TextInputDialog();
   Button newGame = new Button("New Game");
   Button loadGame = new Button("Load Game");
   Font comic = new Font("Comic Sans MS", 50);
@@ -131,6 +132,7 @@ public class TrapZack extends Application{
       loadGame.setFont(comic);
       //vbox.setAlignment(Pos.CENTER); 
       newGame.setOnAction(new ButtonListener());
+      loadGame.setOnAction(new ButtonListener());
       titleBox.setAlignment(Pos.CENTER);
       root.getChildren().add(titleBox);
       
@@ -403,7 +405,7 @@ public class TrapZack extends Application{
             
          }
          
-         if (e.getSource() == newGame);
+         if (e.getSource() == newGame)
          {
             titleMenu = false;
             root.getChildren().remove(titleBox);
@@ -417,10 +419,37 @@ public class TrapZack extends Application{
 
 
             root.requestFocus();
+            
+            
          }
+         
          if (e.getSource() == loadGame)
          {
-            //add code to load the saved file
+            titleMenu = false;
+            //add code to load a saved file
+            root.getChildren().remove(titleBox);
+            VBox saveList = new VBox(30);
+            saveList.setAlignment(Pos.CENTER_LEFT);
+            
+            File directoryPath = new File("SaveGames/");
+            //List of all files and directories
+            String saves[] = directoryPath.list();
+            for (int i=0; i<saves.length; i++) 
+            {
+               Label l = new Label(saves[i]);
+               saveList.getChildren().add(l);
+            }
+            root.getChildren().add(saveList);
+            ld.showAndWait();
+            String chosenSave = ld.getEditor().getText();
+            L1 = new ContraptionZacLevel("SaveGames/"+chosenSave);
+            root.getChildren().remove(saveList);
+            //drewPlayer = false;
+            //gamePaused = false;
+            ta = new AnimationHandler();
+            ta.start();
+            root.requestFocus();
+            
          }
          
          if (e.getSource() == load)
@@ -432,6 +461,8 @@ public class TrapZack extends Application{
             System.out.println(save1.getText());
             System.out.println(save1.getText().equals(""));      
          }
+         
+         //loading the saves
          if (e.getSource() == save1 && !save1.getText().equals(""))
          {
                   System.out.println(save1.getText());
@@ -441,6 +472,44 @@ public class TrapZack extends Application{
                   gamePaused = false;
                   root.requestFocus();
          }
+         if (e.getSource() == save2 && !save2.getText().equals(""))
+         {
+                  System.out.println(save1.getText());
+                  L1 = new ContraptionZacLevel("SaveGames/"+save2.getText()+".txt");
+                  root.getChildren().remove(saveBox);
+                  drewPlayer = false;
+                  gamePaused = false;
+                  root.requestFocus();
+         }
+         if (e.getSource() == save3 && !save3.getText().equals(""))
+         {
+                  System.out.println(save1.getText());
+                  L1 = new ContraptionZacLevel("SaveGames/"+save3.getText()+".txt");
+                  root.getChildren().remove(saveBox);
+                  drewPlayer = false;
+                  gamePaused = false;
+                  root.requestFocus();
+         }
+         if (e.getSource() == save4 && !save4.getText().equals(""))
+         {
+                  System.out.println(save1.getText());
+                  L1 = new ContraptionZacLevel("SaveGames/"+save4.getText()+".txt");
+                  root.getChildren().remove(saveBox);
+                  drewPlayer = false;
+                  gamePaused = false;
+                  root.requestFocus();
+         }
+         if (e.getSource() == save5 && !save5.getText().equals(""))
+         {
+                  System.out.println(save1.getText());
+                  L1 = new ContraptionZacLevel("SaveGames/"+save5.getText()+".txt");
+                  root.getChildren().remove(saveBox);
+                  drewPlayer = false;
+                  gamePaused = false;
+                  root.requestFocus();
+         }
+         //
+         
          
          
       }
