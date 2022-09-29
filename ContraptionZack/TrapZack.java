@@ -75,6 +75,7 @@ public class TrapZack extends Application{
   Button newGame = new Button("New Game");
   Button loadGame = new Button("Load Game");
   Font comic = new Font("Comic Sans MS", 50);
+  Font font = new Font(20);
   Label title = new Label("Contraption Zack");
   VBox titleBox = new VBox(200, title, newGame, loadGame);
   
@@ -118,6 +119,7 @@ public class TrapZack extends Application{
       resume.setOnAction(new ButtonListener());
       end.setOnAction(new ButtonListener());
       restartA.setOnAction(new ButtonListener());
+      restartL.setOnAction(new ButtonListener());
       root.setOnKeyPressed(new KeyListenerDown());
       
       
@@ -356,6 +358,7 @@ public class TrapZack extends Application{
          {
             L1.setPx((Px/64)-1);
             L1.setPy((Py/64)-1);
+            td.setContentText("Type in the name for your saved game");
             td.showAndWait();
             String name = td.getEditor().getText();
             L1.saveLevel("SaveGames/" + name + ".txt");
@@ -396,13 +399,18 @@ public class TrapZack extends Application{
          {
             drewPlayer = false;
             gamePaused = false;
+            L1 = new ContraptionZacLevel("Assets/Level1.txt");
             root.getChildren().remove(vbox);
             root.requestFocus();
             
          }
          else if (e.getSource() == restartL)
          {
-            
+            drewPlayer = false;
+            gamePaused = false;
+            L1 = new ContraptionZacLevel("Assets/Level1.txt");
+            root.getChildren().remove(vbox);
+            root.requestFocus();
          }
          
          if (e.getSource() == newGame)
@@ -428,7 +436,7 @@ public class TrapZack extends Application{
             titleMenu = false;
             //add code to load a saved file
             root.getChildren().remove(titleBox);
-            VBox saveList = new VBox(30);
+            FlowPane saveList = new FlowPane();
             saveList.setAlignment(Pos.CENTER_LEFT);
             
             File directoryPath = new File("SaveGames/");
@@ -436,10 +444,16 @@ public class TrapZack extends Application{
             String saves[] = directoryPath.list();
             for (int i=0; i<saves.length; i++) 
             {
+               
                Label l = new Label(saves[i]);
+               l.setFont(font);
                saveList.getChildren().add(l);
+               l = new Label("      ");
+               saveList.getChildren().add(l);
+               
             }
             root.getChildren().add(saveList);
+            ld.setContentText("Type in the saved game you want to load");
             ld.showAndWait();
             String chosenSave = ld.getEditor().getText();
             L1 = new ContraptionZacLevel("SaveGames/"+chosenSave);
@@ -458,8 +472,8 @@ public class TrapZack extends Application{
             root.getChildren().remove(vbox);
             root.getChildren().add(saveBox);
             save1.requestFocus();
-            System.out.println(save1.getText());
-            System.out.println(save1.getText().equals(""));      
+            //System.out.println(save1.getText());
+            //System.out.println(save1.getText().equals(""));      
          }
          
          //loading the saves
