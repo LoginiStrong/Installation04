@@ -1,0 +1,4 @@
+﻿  FinalClient.cpp
+C:\Installation04\Installation04\FinalClient\FinalClient\FinalClient.cpp(25,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+C:\Installation04\Installation04\FinalClient\FinalClient\FinalClient.cpp(81,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  FinalClient.vcxproj -> C:\Installation04\Installation04\FinalClient\x64\Debug\FinalClient.exe

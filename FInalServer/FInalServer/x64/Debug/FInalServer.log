@@ -1,0 +1,3 @@
+﻿  FInalServer.cpp
+C:\Installation04\Installation04\FInalServer\FInalServer\FInalServer.cpp(27,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  FInalServer.vcxproj -> C:\Installation04\Installation04\FInalServer\x64\Debug\FInalServer.exe

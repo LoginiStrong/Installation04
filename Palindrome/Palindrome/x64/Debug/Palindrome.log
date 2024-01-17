@@ -1,0 +1,4 @@
+﻿  Main.cpp
+C:\Installation04\Installation04\Palindrome\Palindrome\Main.cpp(8,33): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Installation04\Installation04\Palindrome\Palindrome\Main.cpp(23,33): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Palindrome.vcxproj -> C:\Installation04\Installation04\Palindrome\x64\Debug\Palindrome.exe
