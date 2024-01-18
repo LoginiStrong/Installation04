@@ -68,6 +68,7 @@ public class ProjectProgram
    //this method should run the program that you have stored somewhere else. Each time run is called, it starts with a blank canvas and starts running from the top of the main
    public void run(ProjectCanvas theCanvas)
    {
+      commands.run();
       //runs the program here.   
    }
    

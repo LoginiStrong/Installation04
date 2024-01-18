@@ -25,19 +25,22 @@ import java.io.*;
 
 public class ByteLine
 {
-   ArrayList<String> commands = new ArrayList<String>();
+   private ArrayList<String> commands = new ArrayList<String>();//arraylist that holds each line of the file in individual indexes
+   String currentCommand;//variable that holds the current line we're at
+   String delims = "[ ]+";//variable for getting rid of the whitespaces in a line
+   private int index = 0;//used as the current index we are at in the array
    
    public ByteLine()
    {
       
    }
    
-   public void addLine(String line)
+   public void addLine(String line)//appends the line currently read by the scanner to the arraylist
    {
       commands.add(line);
    }
    
-   public void print()
+   public void print()//prints each line of the arraylist with a for loop and printwriter
    {
       try
       {
@@ -56,7 +59,29 @@ public class ByteLine
       }  
    }
    
-   
+   public void run()
+   {
+      while (index != commands.size())
+      {
+         
+         currentCommand = commands.get(index);//gets the line at current index
+         
+         if (!currentCommand.isBlank())
+         {
+            String[] tokens = currentCommand.split(delims);//
+            System.out.println(tokens[0]);
+            index++;
+         }
+         else
+         {
+            index++;
+         }
+      
+      
+      } 
+      
+      
+   }
    
    
 }
