@@ -34,7 +34,7 @@ public class ProjectProgram
    {
       try
       {
-         File file = new File("testfile.txt");
+         File file = new File(filename);
          scan = new Scanner(file);
       
          while (scan.hasNext())

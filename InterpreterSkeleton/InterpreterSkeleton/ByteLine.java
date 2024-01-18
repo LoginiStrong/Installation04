@@ -68,8 +68,12 @@ public class ByteLine
          
          if (!currentCommand.isBlank())
          {
-            String[] tokens = currentCommand.split(delims);//
-            System.out.println(tokens[0]);
+            String[] tokens = currentCommand.split(delims);//puts each term in the line into it's own index in an array
+            for (int i = 0; i < tokens.length; i++)
+            {
+               System.out.print(tokens[i] + " ");
+            }
+            System.out.println();
             index++;
          }
          else

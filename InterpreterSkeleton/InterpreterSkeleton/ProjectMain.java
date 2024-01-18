@@ -50,8 +50,7 @@ public class ProjectMain extends Application
    }
    public static void main(String[] args)
    {
-      filename = "testfile";
-      //filename = args[0]; //if it errors here then you forgot a program arg :)
+      filename = args[0]; //if it errors here then you forgot a program arg :)
       launch(args);
    }
    

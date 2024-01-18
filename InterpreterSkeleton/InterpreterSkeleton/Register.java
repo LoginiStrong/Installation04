@@ -23,7 +23,7 @@ import javafx.scene.input.*;
 import java.io.*;
 
 
-
+//Class for keeping track of registers and their values with basic accessors and mutators
 public class Register
 {
 
