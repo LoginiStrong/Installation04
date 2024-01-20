@@ -35,6 +35,11 @@ public class ByteLine
       
    }
    
+   public ArrayList<String> getCommands()
+   {
+      return commands;
+   }
+   
    public void addLine(String line)//appends the line currently read by the scanner to the arraylist
    {
       commands.add(line);

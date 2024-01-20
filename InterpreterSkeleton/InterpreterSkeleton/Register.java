@@ -27,20 +27,21 @@ import java.io.*;
 public class Register
 {
 
-   private String dataType;
+   private boolean isBool = false;
    private String name;
    private float value;
    
 
-   public Register(String dataType, String name)
+   public Register(String name, float value, boolean isBool)
    {
-      this.dataType = dataType;
+      this.value = value;
+      this.isBool = isBool;
       this.name = name;
    }
 
-   public String getType()
+   public boolean getBool()
    {
-      return dataType;
+      return isBool;
    }
 
    public String getName()
