@@ -1,3 +1,7 @@
 function main params endparams
 float $x
+float $y
 = $x 20
+= $y 40
++ $x $x $y
+endfunction

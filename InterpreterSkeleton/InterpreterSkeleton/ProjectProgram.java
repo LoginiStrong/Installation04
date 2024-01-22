@@ -26,9 +26,12 @@ public class ProjectProgram
 {
    Scanner scan;
    
-   ArrayList<String> globals;
-   ByteLine commands = new ByteLine();
+   
+   ArrayList<String> globals = new ArrayList<String>();
+   ArrayList<ByteLine> functions = new ArrayList<ByteLine>();
+   ByteLine commands;
    ArrayList<String> runCommands;
+   ArrayList<Register> registers = new ArrayList<Register>();
    
    
    //this method should read in the program file from the file. You may assume the file is in a good format
@@ -41,7 +44,23 @@ public class ProjectProgram
       
          while (scan.hasNext())
          {
-            commands.addLine(scan.nextLine());
+            if (scan.hasNext("function"))
+            {
+               ByteLine commands = new ByteLine();
+                  while (!scan.hasNext("endfunction"))
+                  {
+                     commands.addLine(scan.nextLine());//zzzz
+                  }
+                  functions.add(commands);
+            
+            }
+            else if (scan.next().equals("globalfloat"))
+            {
+               //scan.next();
+               globals.add(scan.next());
+            
+            }
+            
          }
       
       }
@@ -49,13 +68,17 @@ public class ProjectProgram
       {
             System.out.println("File not found");
       }
-      runCommands = commands.getCommands();
+      //runCommands = commands.getCommands();
    }
    
    //this method should print out the program in a readable format. The reason you want to print out a program is to verify you read it in right
    public void print()
    {
-      commands.print();
+      for (int i = 0; i < functions.size(); i++)
+      {
+         //functions.get(0).print();
+         //System.out.println(globals.get(0));
+      }
    }
    
    
@@ -76,7 +99,8 @@ public class ProjectProgram
    //this method should run the program that you have stored somewhere else. Each time run is called, it starts with a blank canvas and starts running from the top of the main
    public void run(ProjectCanvas theCanvas)
    {
-      commands.run();
+      
+      //commands.run();
       //runs the program here.
       
       //find the main function and run it.
@@ -85,7 +109,7 @@ public class ProjectProgram
          //functions.get(i) is the ith function
          //functions.get(i).get(0) is the first command in the function
          //functions.get(i).get(0).getArg(0) is the first argument, i.e., the function name
-         if(functions.get(i).get(0).getArg(0).equals("main"))
+         if(functions.get(i).getArgAtLine(0,1).equals("main"))
          {
             //calls the private run function.
             runPriv(functions.get(i),theCanvas,null);
@@ -95,14 +119,55 @@ public class ProjectProgram
    }
    
    //this map stores the global registers
-   HashMap<String,Register> globalMap = new HashMap<String,ProjectRegister>();
+   HashMap<String,Register> globalMap = new HashMap<String,Register>();
    
    //run private
-   public void runPriv(ArrayList<ByteLine> theFunction, ProjectCanvas theCanvas, ArrayList<Register> params)
+   public void runPriv(ByteLine theFunction, ProjectCanvas theCanvas, ArrayList<Register> params)
    {
       //this map is used to store this function's registers (this is for static scoping, dynamic scoping would have passed in the regMap into the function).
-      HashMap<String,ProjectRegister> regMap=null;
+      HashMap<String,Register> regMap=null;
+      regMap = new HashMap<String,Register>();
+      
+      for (int i = 0; i < theFunction.size(); i++)
+      {
+         String firstArg = theFunction.getArgAtLine(i,0);
          
+         if (firstArg.equals("float"))
+         {
+            Register reg = new Register(theFunction.getArgAtLine(i,1),0,false);
+            regMap.put(reg.getName(), reg);
+            registers.add(reg);
+         }
+         
+         if (firstArg.equals("bool"))
+         {
+            Register reg = new Register(theFunction.getArgAtLine(i,1),0,true);
+            regMap.put(reg.getName(), reg);
+            registers.add(reg);
+         }
+         
+         if (firstArg.equals("="))
+         {
+            regMap.get(theFunction.getArgAtLine(i,1)).setValue(Float.parseFloat(theFunction.getArgAtLine(i,2)));
+         }
+         
+         if (firstArg.equals("+"))
+         {
+            float add1 = regMap.get(theFunction.getArgAtLine(i,2)).getValue();
+            float add2 = regMap.get(theFunction.getArgAtLine(i,3)).getValue();
+            //System.out.println(add1);
+            //System.out.println(add2);
+            regMap.get(theFunction.getArgAtLine(i,1)).setValue(add1 + add2);
+         
+         }
+         
+      }
+      
+      System.out.println(regMap.get("$x").getName());
+      System.out.println(regMap.get("$x").getValue());
+      
+      
+      
    
       /*
 	  I'll give you +1 on the assignment if you are the first to find an error in the function code.

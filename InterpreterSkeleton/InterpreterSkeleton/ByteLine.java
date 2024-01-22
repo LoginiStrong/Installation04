@@ -29,15 +29,22 @@ public class ByteLine
    String currentCommand;//variable that holds the current line we're at
    String delims = "[ ]+";//variable for getting rid of the whitespaces in a line
    private int index = 0;//used as the current index we are at in the array
+   String[] tokens;
+   
    
    public ByteLine()
    {
       
    }
    
-   public ArrayList<String> getCommands()
+   public int size()
    {
-      return commands;
+      return commands.size();
+   }
+   
+   public String get(int element)
+   {
+      return commands.get(element);
    }
    
    public void addLine(String line)//appends the line currently read by the scanner to the arraylist
@@ -64,6 +71,51 @@ public class ByteLine
       }  
    }
    
+   public int getArgAmount(int com)
+   {
+   
+      currentCommand = commands.get(com);
+      if (!currentCommand.isBlank())
+         {
+            tokens = currentCommand.split(delims);//puts each term in the line into it's own index in an array
+            for (int i = 0; i < tokens.length; i++)
+            {
+               //System.out.print(tokens[i] + " ");
+            }
+            //System.out.println();
+            return tokens.length;
+         }
+         else
+         {
+            return 0;
+         }
+   }
+   
+   
+   public String getArgAtLine(int line, int arg)
+   {
+         currentCommand = commands.get(line);//gets the line at current index
+         
+         if (!currentCommand.isBlank())
+         {
+            tokens = currentCommand.split(delims);//puts each term in the line into it's own index in an array
+            for (int i = 0; i < tokens.length; i++)
+            {
+               //System.out.print(tokens[i] + " ");
+            }
+            //System.out.println();
+            return tokens[arg];
+         }
+     
+         
+      
+      else
+      {
+         return "";
+      }
+   }
+   
+   
    public void run()
    {
       while (index != commands.size())
@@ -73,7 +125,7 @@ public class ByteLine
          
          if (!currentCommand.isBlank())
          {
-            String[] tokens = currentCommand.split(delims);//puts each term in the line into it's own index in an array
+            tokens = currentCommand.split(delims);//puts each term in the line into it's own index in an array
             for (int i = 0; i < tokens.length; i++)
             {
                System.out.print(tokens[i] + " ");
