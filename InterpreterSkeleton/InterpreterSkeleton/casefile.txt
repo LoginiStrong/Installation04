@@ -1,6 +1,9 @@
+globalfloat $t
 function main params endparams
 float $x
 float $y
+time $p
 = $x 20
 = $y 40
 + $x $x $y
+endfunction

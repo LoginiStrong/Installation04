@@ -28,6 +28,9 @@ public class ProjectProgram
    
    
    ArrayList<String> globals = new ArrayList<String>();
+   
+   
+   
    ArrayList<ByteLine> functions = new ArrayList<ByteLine>();
    ByteLine commands;
    ArrayList<String> runCommands;
@@ -46,18 +49,30 @@ public class ProjectProgram
          {
             if (scan.hasNext("function"))
             {
-               ByteLine commands = new ByteLine();
+            
+                  ByteLine commands = new ByteLine();
                   while (!scan.hasNext("endfunction"))
                   {
+                     //System.out.println(scan.nextLine());
                      commands.addLine(scan.nextLine());//zzzz
                   }
+                  //System.out.println(commands.size());
+                  //commands.print();
                   functions.add(commands);
+                  scan.next();
             
             }
-            else if (scan.next().equals("globalfloat"))
+            else if (scan.hasNext("globalfloat"))
             {
+               String tempGlobal = scan.nextLine();
+               //commands.addLine(tempGlobal);
                //scan.next();
-               globals.add(scan.next());
+               //globals.add(scan.next());
+               int sign = tempGlobal.indexOf('$');
+               String sub = tempGlobal.substring(sign);
+               System.out.println(sub);
+               Register reg = new Register(sub, 0, false);
+               globalMap.put(reg.getName(), reg);
             
             }
             
@@ -94,6 +109,8 @@ public class ProjectProgram
       setStartTime(); //this line of code has to be here.
    }
 
+   //this map stores the global registers
+   HashMap<String,Register> globalMap = new HashMap<String,Register>();
    
    //this is part 2
    //this method should run the program that you have stored somewhere else. Each time run is called, it starts with a blank canvas and starts running from the top of the main
@@ -118,8 +135,7 @@ public class ProjectProgram
          
    }
    
-   //this map stores the global registers
-   HashMap<String,Register> globalMap = new HashMap<String,Register>();
+   
    
    //run private
    public void runPriv(ByteLine theFunction, ProjectCanvas theCanvas, ArrayList<Register> params)
@@ -132,9 +148,18 @@ public class ProjectProgram
       {
          String firstArg = theFunction.getArgAtLine(i,0);
          
+         
          if (firstArg.equals("float"))
          {
             Register reg = new Register(theFunction.getArgAtLine(i,1),0,false);
+            regMap.put(reg.getName(), reg);
+            registers.add(reg);
+         }
+         
+         if (firstArg.equals("time"))
+         {
+            Register reg = new Register(theFunction.getArgAtLine(i,1),100,false);
+            System.out.println(getTime());
             regMap.put(reg.getName(), reg);
             registers.add(reg);
          }
@@ -155,16 +180,45 @@ public class ProjectProgram
          {
             float add1 = regMap.get(theFunction.getArgAtLine(i,2)).getValue();
             float add2 = regMap.get(theFunction.getArgAtLine(i,3)).getValue();
-            //System.out.println(add1);
-            //System.out.println(add2);
             regMap.get(theFunction.getArgAtLine(i,1)).setValue(add1 + add2);
-         
          }
+         
+         if (firstArg.equals("-"))
+         {
+            float temp1 = regMap.get(theFunction.getArgAtLine(i,2)).getValue();
+            float temp2 = regMap.get(theFunction.getArgAtLine(i,3)).getValue();
+            regMap.get(theFunction.getArgAtLine(i,1)).setValue(temp1 - temp2);
+         }
+         
+         if (firstArg.equals("*"))
+         {
+            float temp1 = regMap.get(theFunction.getArgAtLine(i,2)).getValue();
+            float temp2 = regMap.get(theFunction.getArgAtLine(i,3)).getValue();
+            regMap.get(theFunction.getArgAtLine(i,1)).setValue(temp1 * temp2);
+         }
+         
+         if (firstArg.equals("/"))
+         {
+            float temp1 = regMap.get(theFunction.getArgAtLine(i,2)).getValue();
+            float temp2 = regMap.get(theFunction.getArgAtLine(i,3)).getValue();
+            regMap.get(theFunction.getArgAtLine(i,1)).setValue(temp1 / temp2);
+         }
+         
+         if (firstArg.equals("%"))
+         {
+            float temp1 = regMap.get(theFunction.getArgAtLine(i,2)).getValue();
+            float temp2 = regMap.get(theFunction.getArgAtLine(i,3)).getValue();
+            regMap.get(theFunction.getArgAtLine(i,1)).setValue(temp1 % temp2);
+         }
+         
+         
+         
          
       }
       
-      System.out.println(regMap.get("$x").getName());
-      System.out.println(regMap.get("$x").getValue());
+      //System.out.println(regMap.get("$x").getName());
+      //System.out.println(regMap.get("$x").getValue());
+      //System.out.println(regMap.get("$p").getValue());
       
       
       
@@ -250,11 +304,13 @@ public class ProjectProgram
    public void setStartTime()
    {
       startTime = System.currentTimeMillis();
+      
    }
    
    //this method returns the current time as a float.
    public double getTime()
    {
+      //System.out.println("test");
       return System.currentTimeMillis() - startTime;
    }
 }
