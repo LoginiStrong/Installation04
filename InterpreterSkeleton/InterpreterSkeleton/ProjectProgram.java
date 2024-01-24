@@ -49,7 +49,7 @@ public class ProjectProgram
          {
             if (scan.hasNext("function"))
             {
-            
+                  //scan.nextLine();
                   ByteLine commands = new ByteLine();
                   while (!scan.hasNext("endfunction"))
                   {
@@ -91,7 +91,7 @@ public class ProjectProgram
    {
       for (int i = 0; i < functions.size(); i++)
       {
-         //functions.get(0).print();
+         functions.get(0).print();
          //System.out.println(globals.get(0));
       }
    }
@@ -143,11 +143,26 @@ public class ProjectProgram
       //this map is used to store this function's registers (this is for static scoping, dynamic scoping would have passed in the regMap into the function).
       HashMap<String,Register> regMap=null;
       regMap = new HashMap<String,Register>();
+      int i = 0;
+      HashMap<String,Integer> labels = new HashMap<String,Integer>();
       
-      for (int i = 0; i < theFunction.size(); i++)
+      
+      for (i = 0; i < theFunction.size(); i++)
       {
          String firstArg = theFunction.getArgAtLine(i,0);
          
+         if (firstArg.equals("print"))
+         {
+            //System.out.println("test");
+            if (regMap.get(theFunction.getArgAtLine(i,1)).isBool() == false)
+            {
+               System.out.println(regMap.get(theFunction.getArgAtLine(i,1)).getValue());
+            }
+            else 
+            {
+               System.out.println(regMap.get(theFunction.getArgAtLine(i,1)).getBool());
+            }
+         }
          
          if (firstArg.equals("float"))
          {
@@ -158,10 +173,11 @@ public class ProjectProgram
          
          if (firstArg.equals("time"))
          {
-            Register reg = new Register(theFunction.getArgAtLine(i,1),100,false);
-            System.out.println(getTime());
-            regMap.put(reg.getName(), reg);
-            registers.add(reg);
+            //Register reg = new Register(theFunction.getArgAtLine(i,1),(float) getTime(),false);
+            //System.out.println(reg.getValue());
+            //regMap.put(reg.getName(), reg);
+            //registers.add(reg);
+            regMap.get(theFunction.getArgAtLine(i,1)).setValue((float) getTime());
          }
          
          if (firstArg.equals("bool"))
@@ -171,7 +187,12 @@ public class ProjectProgram
             registers.add(reg);
          }
          
-         if (firstArg.equals("="))
+         if (firstArg.equals("=") && theFunction.getArgAtLine(i,2).startsWith("$"))
+         {
+            regMap.get(theFunction.getArgAtLine(i,1)).setValue(regMap.get(theFunction.getArgAtLine(i,2)).getValue());
+            //System.out.println(regMap.get("$p").getValue());
+         }
+         else if (firstArg.equals("="))
          {
             regMap.get(theFunction.getArgAtLine(i,1)).setValue(Float.parseFloat(theFunction.getArgAtLine(i,2)));
          }
@@ -211,7 +232,127 @@ public class ProjectProgram
             regMap.get(theFunction.getArgAtLine(i,1)).setValue(temp1 % temp2);
          }
          
+         if (firstArg.equals("||"))
+         {
+            if (regMap.get(theFunction.getArgAtLine(i,2)).getBool() == true || regMap.get(theFunction.getArgAtLine(i,3)).getBool() == true)
+            {
+               regMap.get(theFunction.getArgAtLine(i,1)).setValue(1);
+            }
+            else
+            {
+               regMap.get(theFunction.getArgAtLine(i,1)).setValue(0);
+            }
+         }
          
+         if (firstArg.equals("&&"))
+         {
+            if (regMap.get(theFunction.getArgAtLine(i,2)).getBool() == true && regMap.get(theFunction.getArgAtLine(i,3)).getBool() == true)
+            {
+               regMap.get(theFunction.getArgAtLine(i,1)).setValue(1);
+            }
+            else
+            {
+               regMap.get(theFunction.getArgAtLine(i,1)).setValue(0);
+            }
+         }
+         
+         if (firstArg.equals("!"))
+         {
+            boolean temp = regMap.get(theFunction.getArgAtLine(i,1)).getBool();
+            if (!temp == false)
+            {
+               regMap.get(theFunction.getArgAtLine(i,1)).setValue(0);
+            }
+            else
+            {
+               regMap.get(theFunction.getArgAtLine(i,1)).setValue(1);
+            }
+         }
+         
+         if (firstArg.equals(">"))
+         {
+            if (regMap.get(theFunction.getArgAtLine(i,2)).getValue() > regMap.get(theFunction.getArgAtLine(i,3)).getValue())
+            {
+               regMap.get(theFunction.getArgAtLine(i,1)).setValue(1);
+            }
+            else
+            {
+               regMap.get(theFunction.getArgAtLine(i,1)).setValue(0);
+            }
+         }
+         
+         if (firstArg.equals(">="))
+         {
+            if (regMap.get(theFunction.getArgAtLine(i,2)).getValue() >= regMap.get(theFunction.getArgAtLine(i,3)).getValue())
+            {
+               regMap.get(theFunction.getArgAtLine(i,1)).setValue(1);
+            }
+            else
+            {
+               regMap.get(theFunction.getArgAtLine(i,1)).setValue(0);
+            }
+         }
+         
+         if (firstArg.equals("=="))
+         {
+            if (regMap.get(theFunction.getArgAtLine(i,2)).getValue() == regMap.get(theFunction.getArgAtLine(i,3)).getValue())
+            {
+               regMap.get(theFunction.getArgAtLine(i,1)).setValue(1);
+            }
+            else
+            {
+               regMap.get(theFunction.getArgAtLine(i,1)).setValue(0);
+            }
+         }
+         
+         if (firstArg.equals("label"))
+         {
+            labels.put(theFunction.getArgAtLine(i,1), i);
+         }
+         
+         if (firstArg.equals("jump"))
+         {
+            i = labels.get(theFunction.getArgAtLine(i,1));
+         }
+         
+         if (firstArg.equals("jumpif"))
+         {
+            if (regMap.get(theFunction.getArgAtLine(i,2)).getBool() == true)
+            {
+               i = labels.get(theFunction.getArgAtLine(i,1));
+            }
+         }
+         
+         if (firstArg.equals("callfunction"))
+         {
+            if (theFunction.getArgAtLine(i,1).equals("drawsquare"))
+            {
+                  System.out.println("testtt");
+                  float rc = regMap.get(theFunction.getArgAtLine(i,3)).getValue();
+                  float gc = regMap.get(theFunction.getArgAtLine(i,4)).getValue();
+                  float bc = regMap.get(theFunction.getArgAtLine(i,5)).getValue();
+                  float xc = regMap.get(theFunction.getArgAtLine(i,6)).getValue();
+                  float yc = regMap.get(theFunction.getArgAtLine(i,7)).getValue();
+                  float xsc = regMap.get(theFunction.getArgAtLine(i,8)).getValue();
+                  float ysc = regMap.get(theFunction.getArgAtLine(i,9)).getValue();
+                  System.out.println(rc + " " + gc + " " + bc + " " + xc + " " + yc + " " + xsc + " " + ysc);
+                  theCanvas.drawRect(rc,gc,bc,xc,yc,xsc,ysc);
+            }
+            else 
+            {
+               for (int j = 0; j < functions.size(); j++)
+               {
+                  if (functions.get(j).getArgAtLine(0,1).equals(theFunction.getArgAtLine(i,1)))
+                  {
+                     //for ( ) zzzzz
+                  
+                     runPriv(theFunction, theCanvas, params);
+                  }
+                  
+               }
+            }
+            
+         }
          
          
       }

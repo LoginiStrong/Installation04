@@ -39,9 +39,21 @@ public class Register
       this.name = name;
    }
 
-   public boolean getBool()
+   public boolean isBool()
    {
       return isBool;
+   }
+   
+   public boolean getBool()
+   {
+      if (value == 1)
+      {
+         return true;
+      }
+      else 
+      {
+         return false;
+      }
    }
 
    public String getName()

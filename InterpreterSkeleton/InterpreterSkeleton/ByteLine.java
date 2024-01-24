@@ -30,6 +30,8 @@ public class ByteLine
    String delims = "[ ]+";//variable for getting rid of the whitespaces in a line
    private int index = 0;//used as the current index we are at in the array
    String[] tokens;
+   String functionName;
+   
    
    
    public ByteLine()
@@ -49,7 +51,10 @@ public class ByteLine
    
    public void addLine(String line)//appends the line currently read by the scanner to the arraylist
    {
-      commands.add(line);
+         if (!line.isEmpty())
+         {
+            commands.add(line);
+         }
    }
    
    public void print()//prints each line of the arraylist with a for loop and printwriter

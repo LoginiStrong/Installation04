@@ -1,7 +1,19 @@
+
 function main params endparams
 float $x
 float $y
+float $r
+float $g
+float $b
+float $sx
+float $sy
 = $x 20
 = $y 40
-+ $x $x $y
+= $r 80
+= $g -30
+= $b 50
+= $sx 30
+= $sy 30
+
+callfunction drawsquare args $r $g $b $x $y $sx $sy endargs
 endfunction

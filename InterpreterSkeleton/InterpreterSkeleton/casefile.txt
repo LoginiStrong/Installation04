@@ -5,5 +5,11 @@ float $y
 time $p
 = $x 20
 = $y 40
+= $p $x
+label redo
 + $x $x $y
+print $x
+print $y
+print $p
+jump redo
 endfunction
