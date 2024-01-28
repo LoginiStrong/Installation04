@@ -61,6 +61,11 @@ public class Register
       return name;
    }
    
+   public void setName(String name)
+   {
+      this.name = name;
+   }
+   
    public float getValue()
    {
       return value;

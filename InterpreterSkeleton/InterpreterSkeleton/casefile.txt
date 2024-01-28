@@ -1,15 +1,23 @@
 globalfloat $t
+
 function main params endparams
 float $x
-float $y
-time $p
-= $x 20
-= $y 40
-= $p $x
-label redo
-+ $x $x $y
-print $x
-print $y
-print $p
-jump redo
+float $q
+float $c
+float $ten
+= $ten 10
+= $x 5
+= $q .1
+time $c
+* $c $c $q
+* $c $c $q
+% $c $c $ten
+= $t 300
+callfunction testop args $x $ten endargs
+callfunction drawsquare args $c $q $q $x $x $c $c endargs
+endfunction
+
+function testop params $p1 $p2 endparams
+print $p1
+print $p2
 endfunction

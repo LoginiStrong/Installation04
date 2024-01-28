@@ -1,13 +1,5 @@
-function main params endparams
-float $x
-float $q
-float $c
-float $ten
-= $ten 10
-= $x 5
-= $q .1
-time $c
-* $c $c $q
-* $c $c $q
-% $c $c $ten
-callfunction drawsquare args $c $q $q $x $x $c $c endargs
+function testop params $p1 $p2 endparams
+print $t
+print $p1
+print $p2
+endfunction

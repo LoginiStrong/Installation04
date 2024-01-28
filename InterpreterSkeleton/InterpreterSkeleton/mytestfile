@@ -1,4 +1,3 @@
-
 function main params endparams
 float $x
 float $y
@@ -14,6 +13,11 @@ float $sy
 = $b 50
 = $sx 30
 = $sy 30
-
+callfunction testop args $r $g endargs
 callfunction drawsquare args $r $g $b $x $y $sx $sy endargs
+endfunction
+
+function testop params $p1 $p2 endparams
+print $p1
+print $p2
 endfunction

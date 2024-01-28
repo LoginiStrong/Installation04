@@ -25,16 +25,11 @@ import java.io.*;
 public class ProjectProgram
 {
    Scanner scan;
-   
-   
-   ArrayList<String> globals = new ArrayList<String>();
-   
-   
-   
-   ArrayList<ByteLine> functions = new ArrayList<ByteLine>();
-   ByteLine commands;
-   ArrayList<String> runCommands;
-   ArrayList<Register> registers = new ArrayList<Register>();
+   boolean inFunction = false;//is checked to see if we are in a function other than main
+   ArrayList<Register> globals = new ArrayList<Register>();
+   HashMap<String,HashMap<String,Register>> functionRegisters = new HashMap<String,HashMap<String,Register>>();//holds the regmap that corresponds to the right function
+   ArrayList<ByteLine> functions = new ArrayList<ByteLine>();//since each function is in a byteline this is how we access each function
+   ByteLine commands;//object that stores each function and has accessors to get an arg at a certain line
    
    
    //this method should read in the program file from the file. You may assume the file is in a good format
@@ -45,33 +40,27 @@ public class ProjectProgram
          File file = new File(filename);
          scan = new Scanner(file);
       
-         while (scan.hasNext())
+         while (scan.hasNext())//reads whole file
          {
-            if (scan.hasNext("function"))
+            if (scan.hasNext("function"))//if it reads function it stores all the lines in a byteline object till endfunction
             {
-                  //scan.nextLine();
                   ByteLine commands = new ByteLine();
                   while (!scan.hasNext("endfunction"))
                   {
-                     //System.out.println(scan.nextLine());
-                     commands.addLine(scan.nextLine());//zzzz
+                     commands.addLine(scan.nextLine());
                   }
-                  //System.out.println(commands.size());
-                  //commands.print();
+                  commands.addLine(scan.nextLine());
                   functions.add(commands);
-                  scan.next();
-            
+                  HashMap<String,Register> tempMap = tempMap = new HashMap<String,Register>();
+                  functionRegisters.put(commands.getArgAtLine(0,1),tempMap);
             }
-            else if (scan.hasNext("globalfloat"))
+            else if (scan.hasNext("globalfloat"))//if it reads global it stores that register in a globally accessible list and map
             {
                String tempGlobal = scan.nextLine();
-               //commands.addLine(tempGlobal);
-               //scan.next();
-               //globals.add(scan.next());
                int sign = tempGlobal.indexOf('$');
                String sub = tempGlobal.substring(sign);
-               System.out.println(sub);
                Register reg = new Register(sub, 0, false);
+               globals.add(reg);
                globalMap.put(reg.getName(), reg);
             
             }
@@ -91,8 +80,7 @@ public class ProjectProgram
    {
       for (int i = 0; i < functions.size(); i++)
       {
-         functions.get(0).print();
-         //System.out.println(globals.get(0));
+         functions.get(i).print();
       }
    }
    
@@ -104,7 +92,7 @@ public class ProjectProgram
       for(int i=0;i<globals.size();i++)
       {
          //this creates the globals with the names of globals.get(i) as floats. In my register class, the first arg is the name, the second arg is the value, and the third arg is isBool
-         globalMap.put(globals.get(i),new Register(globals.get(i),0,false));
+         globalMap.put(globals.get(i).getName(),globals.get(i));
       }
       setStartTime(); //this line of code has to be here.
    }
@@ -116,9 +104,6 @@ public class ProjectProgram
    //this method should run the program that you have stored somewhere else. Each time run is called, it starts with a blank canvas and starts running from the top of the main
    public void run(ProjectCanvas theCanvas)
    {
-      
-      //commands.run();
-      //runs the program here.
       
       //find the main function and run it.
       for(int i=0;i< functions.size();i++)
@@ -134,26 +119,39 @@ public class ProjectProgram
       }
          
    }
-   
-   
-   
+    
    //run private
    public void runPriv(ByteLine theFunction, ProjectCanvas theCanvas, ArrayList<Register> params)
    {
       //this map is used to store this function's registers (this is for static scoping, dynamic scoping would have passed in the regMap into the function).
+      
       HashMap<String,Register> regMap=null;
-      regMap = new HashMap<String,Register>();
-      int i = 0;
+      regMap = functionRegisters.get(theFunction.getArgAtLine(0,1));//gets the correct register map for the current function
+      
+      for (int i = 0; i < globals.size(); i++)
+      {
+         regMap.put(globals.get(i).getName(),globals.get(i));//adds globals to this functions reg map
+      }
+      
+      int i = 0;//index variable for the for loop
       HashMap<String,Integer> labels = new HashMap<String,Integer>();
       
       
-      for (i = 0; i < theFunction.size(); i++)
+      for (i = 0; i < theFunction.size(); i++)//loops through the current function and checks every if statement against the line
       {
          String firstArg = theFunction.getArgAtLine(i,0);
+         if (firstArg.equals("function") && !theFunction.getArgAtLine(i,1).equals("main"))//runs this if it isnt the main function
+         {                                                                          //it takes care of the passed in parameters
+            inFunction = false;
+            for (int j = 0; j < params.size(); j++)
+            {
+               params.get(j).setName(theFunction.getArgAtLine(i,3+j));
+               regMap.put(params.get(j).getName(),params.get(j));
+            }
+         }
          
          if (firstArg.equals("print"))
          {
-            //System.out.println("test");
             if (regMap.get(theFunction.getArgAtLine(i,1)).isBool() == false)
             {
                System.out.println(regMap.get(theFunction.getArgAtLine(i,1)).getValue());
@@ -168,15 +166,10 @@ public class ProjectProgram
          {
             Register reg = new Register(theFunction.getArgAtLine(i,1),0,false);
             regMap.put(reg.getName(), reg);
-            registers.add(reg);
          }
          
          if (firstArg.equals("time"))
          {
-            //Register reg = new Register(theFunction.getArgAtLine(i,1),(float) getTime(),false);
-            //System.out.println(reg.getValue());
-            //regMap.put(reg.getName(), reg);
-            //registers.add(reg);
             regMap.get(theFunction.getArgAtLine(i,1)).setValue((float) getTime());
          }
          
@@ -184,13 +177,11 @@ public class ProjectProgram
          {
             Register reg = new Register(theFunction.getArgAtLine(i,1),0,true);
             regMap.put(reg.getName(), reg);
-            registers.add(reg);
          }
          
          if (firstArg.equals("=") && theFunction.getArgAtLine(i,2).startsWith("$"))
          {
             regMap.get(theFunction.getArgAtLine(i,1)).setValue(regMap.get(theFunction.getArgAtLine(i,2)).getValue());
-            //System.out.println(regMap.get("$p").getValue());
          }
          else if (firstArg.equals("="))
          {
@@ -327,7 +318,6 @@ public class ProjectProgram
          {
             if (theFunction.getArgAtLine(i,1).equals("drawsquare"))
             {
-                  System.out.println("testtt");
                   float rc = regMap.get(theFunction.getArgAtLine(i,3)).getValue();
                   float gc = regMap.get(theFunction.getArgAtLine(i,4)).getValue();
                   float bc = regMap.get(theFunction.getArgAtLine(i,5)).getValue();
@@ -335,108 +325,31 @@ public class ProjectProgram
                   float yc = regMap.get(theFunction.getArgAtLine(i,7)).getValue();
                   float xsc = regMap.get(theFunction.getArgAtLine(i,8)).getValue();
                   float ysc = regMap.get(theFunction.getArgAtLine(i,9)).getValue();
-                  System.out.println(rc + " " + gc + " " + bc + " " + xc + " " + yc + " " + xsc + " " + ysc);
                   theCanvas.drawRect(rc,gc,bc,xc,yc,xsc,ysc);
             }
             else 
             {
-               for (int j = 0; j < functions.size(); j++)
+               for (int j = 0; j < functions.size(); j++)//this is for running custom function code
                {
                   if (functions.get(j).getArgAtLine(0,1).equals(theFunction.getArgAtLine(i,1)))
                   {
-                     //for ( ) zzzzz
-                  
-                     runPriv(theFunction, theCanvas, params);
+                     params = new ArrayList<Register>();
+                     for (int k = 3; k < theFunction.getArgAmount(i)-1; k++)
+                     {  
+                        params.add(regMap.get(theFunction.getArgAtLine(i,k)));
+                     }
+                     if (inFunction == false)
+                     {
+                        inFunction= true;
+                        runPriv(functions.get(j), theCanvas, params);
+                     }
                   }
                   
                }
             }
             
-         }
-         
-         
+         }    
       }
-      
-      //System.out.println(regMap.get("$x").getName());
-      //System.out.println(regMap.get("$x").getValue());
-      //System.out.println(regMap.get("$p").getValue());
-      
-      
-      
-   
-      /*
-	  I'll give you +1 on the assignment if you are the first to find an error in the function code.
-	  
-            case FUNCTION:
-               //note that we create a new regmap for each function.
-               regMap = new HashMap<String,ProjectRegister>();
-               
-               //we then put the global regs into it.
-               for(int j=0;j<globals.size();j++)
-               {
-                  regMap.put(globals.get(j),globalMap.get(globals.get(j)));
-               }
-               
-               //if the function has params, then you get all the registers from the params and stick them into the map too
-               if(params != null)
-               {
-                  for(int j=0;j<params.size();j++)
-                  {
-                     //theFunction.get(i) is the ith command in the function, .getParamArg(j) gets the jth parameter for the function., 
-                     regMap.put(theFunction.get(i).getParamArg(j),params.get(j));
-                  }
-               }
-               
-               break;
-            case CALLFUNCTION:
-               //this draws the square
-               //theFunction.get(i) is the ith command in the function, .getArg(0) is the function name
-               if(theFunction.get(i).getArg(0).equals("drawsquare"))
-               {
-                  //pulls each of the 7 arguments from the function call to pass them into canvas's draw
-                  float rc = regMap.get(theFunction.get(i).getParamArg(0)).getValue();
-                  float gc = regMap.get(theFunction.get(i).getParamArg(1)).getValue();
-                  float bc = regMap.get(theFunction.get(i).getParamArg(2)).getValue();
-                  float xc = regMap.get(theFunction.get(i).getParamArg(3)).getValue();
-                  float yc = regMap.get(theFunction.get(i).getParamArg(4)).getValue();
-                  float xsc = regMap.get(theFunction.get(i).getParamArg(5)).getValue();
-                  float ysc = regMap.get(theFunction.get(i).getParamArg(6)).getValue();
-                  
-                  theCanvas.drawRect(rc,gc,bc,xc,yc,xsc,ysc);
-                  break;
-               }
-               else
-               {
-                  
-                  //gets the amount of paramters for the function you are about to call
-                  //recall thefunction.get(i) is the functioncall's command
-                  int amount = theFunction.get(i).getNumParamsArgs();
-                  
-                  //create an arraylist to be used to hold the param registers
-                  ArrayList<ProjectRegister> registers = new ArrayList<ProjectRegister>();
-                  
-                  //find all the registers you want to use as params and add them
-                  for(int j=0;j<amount;j++)
-                  {
-                     registers.add(regMap.get(theFunction.get(i).getParamArg(j)));
-                  }
-                  
-                  //this block of code finds the function you want to call within the list of functions
-                  for(int k=0;k<functions.size();k++)
-                  {
-                     //theFunction.get(i).getArg(0) is the name of the function you want to call
-                     //functions.get(k) is the kth function
-                     //functions.get(k).get(0) is the command "function" for the kth function
-                     //functions.get(k).get(0).getArg(0) is the name of the kth function
-                     if(functions.get(k).get(0).getArg(0).equals(theFunction.get(i).getArg(0)))
-                     {
-                        //calls run on itself. Oh, I bet this works with recursive function calls :).
-                        runPriv(functions.get(k),theCanvas,registers);
-                     }
-                  }     
-               }
-               break;
-			*/
    }
 
    

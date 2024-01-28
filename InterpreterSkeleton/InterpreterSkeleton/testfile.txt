@@ -12,7 +12,6 @@ time $c
 * $c $c $q
 * $c $c $q
 % $c $c $ten
-
 callfunction drawsquare args $c $q $q $x $x $c $c endargs
 endfunction
 

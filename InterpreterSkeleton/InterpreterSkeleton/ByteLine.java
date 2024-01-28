@@ -30,7 +30,6 @@ public class ByteLine
    String delims = "[ ]+";//variable for getting rid of the whitespaces in a line
    private int index = 0;//used as the current index we are at in the array
    String[] tokens;
-   String functionName;
    
    
    
@@ -76,18 +75,13 @@ public class ByteLine
       }  
    }
    
-   public int getArgAmount(int com)
+   public int getArgAmount(int com)//gets the amount of arguments in a current line
    {
    
       currentCommand = commands.get(com);
       if (!currentCommand.isBlank())
          {
             tokens = currentCommand.split(delims);//puts each term in the line into it's own index in an array
-            for (int i = 0; i < tokens.length; i++)
-            {
-               //System.out.print(tokens[i] + " ");
-            }
-            //System.out.println();
             return tokens.length;
          }
          else
@@ -97,23 +91,15 @@ public class ByteLine
    }
    
    
-   public String getArgAtLine(int line, int arg)
+   public String getArgAtLine(int line, int arg)//acts like a 2d array, the first dimension being the line number, the second being the argument number
    {
          currentCommand = commands.get(line);//gets the line at current index
          
          if (!currentCommand.isBlank())
          {
             tokens = currentCommand.split(delims);//puts each term in the line into it's own index in an array
-            for (int i = 0; i < tokens.length; i++)
-            {
-               //System.out.print(tokens[i] + " ");
-            }
-            //System.out.println();
             return tokens[arg];
          }
-     
-         
-      
       else
       {
          return "test";
@@ -121,7 +107,7 @@ public class ByteLine
    }
    
    
-   public void run()
+   public void run()//was for first part
    {
       while (index != commands.size())
       {
@@ -142,12 +128,6 @@ public class ByteLine
          {
             index++;
          }
-      
-      
-      } 
-      
-      
-   }
-   
-   
+      }   
+   } 
 }
