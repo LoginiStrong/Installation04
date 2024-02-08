@@ -1,0 +1,9 @@
+name(float x, float y, float z)
+{
+	x = 2;
+}
+
+name2()
+{
+	y = (4);
+}
