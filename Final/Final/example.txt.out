@@ -1,0 +1,31 @@
+function main params endparams 
+float f0
+time f0
+label l0
+bool f1
+float f2
+= f2 0
+> f1 f0 f2
+! f1 f1
+jumpif l1 f1
+float f3
+float f4
+= f4 3
+% f3 f0 f4
+bool f5
+float f6
+= f6 0
+== f5 f3 f6
+! f5 f5
+jumpif l3 f5
+print f0
+label l3
+float f7
+float f8
+= f8 1
+- f7 f0 f8
+= f0 f7
+jump l0
+label l1
+endfunction
+
